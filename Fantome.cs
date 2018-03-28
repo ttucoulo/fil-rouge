@@ -8,7 +8,7 @@ namespace FilRouge
 {
     class Fantome : Monstre
     {
-        public Fantome(int matricule, string nom, string prenom, TypeSexe sexe, string fonction, int cagnotte1 ,int affectation1) 
+        public Fantome(int matricule, string nom, string prenom, TypeSexe sexe, string fonction ,int affectation1, int cagnotte1) 
             : base(matricule, nom, prenom, sexe, fonction,affectation1, cagnotte1)
         {
 
