@@ -36,10 +36,14 @@
 *.x86_64
 *.hex
 
+*.suo
+
 # Debug files
 *.dSYM/
 *.su
 *.idb
+*.pdb
+*.exe
 *.pdb
 
 # Kernel Module Compile Results
