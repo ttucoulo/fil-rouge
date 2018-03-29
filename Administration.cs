@@ -786,6 +786,8 @@ namespace FilRouge
         public void AfficherSelonCategorie(bool console)
         {
             int numero_personnel;
+            string nomFich = "C:/temp/write.csv";
+            StreamWriter fichEcr = new StreamWriter(nomFich, true);
             do
             {
                 Console.Clear();
@@ -796,39 +798,36 @@ namespace FilRouge
                 switch (numero_personnel)
                 {
                     case 1:
-                        if (console)
+                        Console.Clear();
+                        int c = 1;
+                        if(console) Console.WriteLine("Liste des Sorciers :");
+                        else fichEcr.WriteLine("Liste des Sorciers :");
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
-                            Console.Clear();
-                            int c = 1;
-                            Console.WriteLine("Liste des Sorciers :");
-                            for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                            if (this.toutLePersonnel[i] is Sorcier)
                             {
-                                if (this.toutLePersonnel[i] is Sorcier)
-                                {
-                                    Console.Write(c + ". ");
-                                    this.AfficherParPersonnel((Sorcier)this.toutLePersonnel[i]);
-                                    c++;
-                                }
+                                if(console) Console.Write(c + ". ");
+                                else fichEcr.Write(c + ". ");
+                                this.AfficherParPersonnel((Sorcier)this.toutLePersonnel[i], console, fichEcr);
+                                c++;
                             }
-                            Console.ReadKey();
                         }
-                        else
-                        {
-
-                        }
+                        Console.ReadKey();
                         break;
                     case 2:
                         Console.Clear();
                         int b = 1;
-                        Console.WriteLine("Liste des Monstres :");
+                        if (console) Console.WriteLine("Liste des Monstres :");
+                        else fichEcr.WriteLine("Liste des Monstres :");
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is Monstre && !(this.toutLePersonnel[i] is Demon)
                                 && !(this.toutLePersonnel[i] is Zombie) && !(this.toutLePersonnel[i] is Vampire)
                                 && !(this.toutLePersonnel[i] is Fantome) && !(this.toutLePersonnel[i] is LoupGarou))
                             {
-                                Console.Write(b + ". ");
-                                this.AfficherParPersonnel((Monstre)this.toutLePersonnel[i]);
+                                if (console) Console.Write(b + ". ");
+                                else fichEcr.Write(b + ". ");
+                                this.AfficherParPersonnel((Monstre)this.toutLePersonnel[i],console,fichEcr);
                                 b++;
                             }
                         }
@@ -836,14 +835,16 @@ namespace FilRouge
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Liste des Demons :");
+                        if (console) Console.WriteLine("Liste des Demons :");
+                        else fichEcr.WriteLine("Liste des Demons :");
                         int a = 1;
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is Demon)
                             {
-                                Console.Write(a + ". ");
-                                this.AfficherParPersonnel((Demon)this.toutLePersonnel[i]);
+                                if (console) Console.Write(a + ". ");
+                                else fichEcr.Write(a + ". ");
+                                this.AfficherParPersonnel((Demon)this.toutLePersonnel[i],console,fichEcr);
                                 a++;
                             }
                         }
@@ -852,13 +853,15 @@ namespace FilRouge
                     case 4:
                         Console.Clear();
                         int x = 1;
-                        Console.WriteLine("Liste des Vampires :");
+                        if (console) Console.WriteLine("Liste des Vampires :");
+                        else fichEcr.WriteLine("Liste des Vampires :");
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is Vampire)
                             {
-                                Console.Write(x + ". ");
-                                this.AfficherParPersonnel((Vampire)this.toutLePersonnel[i]);
+                                if (console) Console.Write(x + ". ");
+                                else fichEcr.Write(x + ". ");
+                                this.AfficherParPersonnel((Vampire)this.toutLePersonnel[i],console,fichEcr);
                                 x++;
                             }
                         }
@@ -866,14 +869,16 @@ namespace FilRouge
                         break;
                     case 5:
                         Console.Clear();
-                        Console.WriteLine("Liste des Loup-Garous :");
+                        if (console) Console.WriteLine("Liste des Loup-Garous :");
+                        else fichEcr.WriteLine("Liste des Loup-Garous :");
                         int l = 1;
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is LoupGarou)
                             {
-                                Console.Write(l + ". ");
-                                this.AfficherParPersonnel((LoupGarou)this.toutLePersonnel[i]);
+                                if (console) Console.Write(l + ". ");
+                                else fichEcr.Write(l + ". ");
+                                this.AfficherParPersonnel((LoupGarou)this.toutLePersonnel[i],console,fichEcr);
                                 l++;
                             }
                         }
@@ -882,13 +887,15 @@ namespace FilRouge
                     case 6:
                         Console.Clear();
                         int j = 1;
-                        Console.WriteLine("Liste des Zombies :");
+                        if (console) Console.WriteLine("Liste des Zombies :");
+                        else fichEcr.WriteLine("Liste des Zombies :");
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is Zombie)
                             {
-                                Console.Write(j + ". ");
-                                this.AfficherParPersonnel((Zombie)this.toutLePersonnel[i]);
+                                if (console) Console.Write(j + ". ");
+                                else fichEcr.Write(j + ". ");
+                                this.AfficherParPersonnel((Zombie)this.toutLePersonnel[i],console,fichEcr);
                                 j++;
                             }
                         }
@@ -896,14 +903,16 @@ namespace FilRouge
                         break;
                     case 7:
                         Console.Clear();
-                        Console.WriteLine("Liste des Fantomes :");
+                        if (console) Console.WriteLine("Liste des Fantomes :");
+                        else fichEcr.WriteLine("Liste des Fantomes :");
                         int k = 1;
                         for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                         {
                             if (this.toutLePersonnel[i] is Fantome)
                             {
-                                Console.Write(k + ". ");
-                                this.AfficherParPersonnel((Fantome)this.toutLePersonnel[i]);
+                                if (console) Console.Write(k + ". ");
+                                else fichEcr.Write(k + ". ");
+                                this.AfficherParPersonnel((Fantome)this.toutLePersonnel[i],console,fichEcr);
                                 k++;
                             }
                         }
@@ -915,16 +924,24 @@ namespace FilRouge
                 }
             } while (numero_personnel != 1 && numero_personnel != 2 && numero_personnel != 3 && numero_personnel != 4 
             && numero_personnel != 5 && numero_personnel != 6 && numero_personnel != 7);
+            fichEcr.Close();
         }
-        public void AfficherParPersonnel(Personnel personnel)
+        public void AfficherParPersonnel(Personnel personnel, bool console, StreamWriter fichEcr)
         {
-             if (personnel is Sorcier) Console.WriteLine(personnel.Prenom+" " + personnel.Nom);
-             else if (personnel is Demon) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Vampire) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is LoupGarou) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Fantome) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Zombie) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             if (personnel is Sorcier && console) Console.WriteLine(personnel.Prenom+" " + personnel.Nom);
+             else if (personnel is Sorcier && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Demon && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Demon && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Vampire && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Vampire && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is LoupGarou && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is LoupGarou && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Fantome && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Fantome && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Zombie && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Zombie && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if(personnel is Monstre && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
         }
 
 
@@ -941,7 +958,6 @@ namespace FilRouge
                 switch (critere)
                 {
                     case 1:
-                        this.AfficherSelonCategorie();
                         break;
                     case 2:
 
