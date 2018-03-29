@@ -1,0 +1,6 @@
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\bin\Debug\FilRouge.exe.config
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\bin\Debug\FilRouge.exe
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\bin\Debug\FilRouge.pdb
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\obj\Debug\FilRouge.csprojResolveAssemblyReference.cache
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\obj\Debug\FilRouge.exe
+C:\Users\thiba\OneDrive\Documents\Visual Studio 2017\Projects\fil_rouge_git\fil-rouge\obj\Debug\FilRouge.pdb
