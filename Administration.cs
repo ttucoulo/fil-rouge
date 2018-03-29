@@ -112,10 +112,10 @@ namespace FilRouge
                 switch (sortie)
                 {
                     case 1:
-                        this.Sortie_Critere_Console();
+                        this.Sortie_Critere(true);
                         break;
                     case 2:
-                        this.Sortie_Critere_CSV();
+                        this.Sortie_Critere(false);
                         break;
                     default:
                         Program.MessageErreur();
@@ -757,19 +757,21 @@ namespace FilRouge
             } while (numero != 1 && numero != 2 && numero != 3 && numero != 4);
             Console.WriteLine("Votre Attraction a été ajoutée au logiciel.");
         }
-        public void Sortie_Critere_Console()
+        public void Sortie_Critere(bool console)
         {
             int critere;
             do
             {
                 Console.Clear();
+                if(console) Console.WriteLine("En mode Console.");
+                else Console.WriteLine("Ecriture dans un CSV.");
                 Console.WriteLine("Veuillez saisir un critère parmi les propositions suivantes.\nTappez 1. Si vous voulez afficher afficher la liste du personnel par categorie.\n" +
                     "Tappez 2. Si vous voulez afficher la liste des attractions en maintenance.");
                 critere = int.Parse(Console.ReadLine());
                 switch (critere)
                 {
                     case 1:
-                        this.AfficherSelonCategorie();
+                        this.AfficherSelonCategorie(console);
                         break;
                     case 2:
 
@@ -781,7 +783,7 @@ namespace FilRouge
                 }
             } while (critere !=1 && critere!=2);
         }
-        public void AfficherSelonCategorie()
+        public void AfficherSelonCategorie(bool console)
         {
             int numero_personnel;
             do
@@ -794,19 +796,26 @@ namespace FilRouge
                 switch (numero_personnel)
                 {
                     case 1:
-                        Console.Clear();
-                        int c = 1;
-                        Console.WriteLine("Liste des Sorciers :");
-                        for (int i=0;i< this.toutLePersonnel.Count(); i++)
+                        if (console)
                         {
-                            if (this.toutLePersonnel[i] is Sorcier)
+                            Console.Clear();
+                            int c = 1;
+                            Console.WriteLine("Liste des Sorciers :");
+                            for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                             {
-                                Console.Write(c + ". ");
-                                this.AfficherParPersonnel((Sorcier)this.toutLePersonnel[i]);
-                                c++;
+                                if (this.toutLePersonnel[i] is Sorcier)
+                                {
+                                    Console.Write(c + ". ");
+                                    this.AfficherParPersonnel((Sorcier)this.toutLePersonnel[i]);
+                                    c++;
+                                }
                             }
+                            Console.ReadKey();
                         }
-                        Console.ReadKey();
+                        else
+                        {
+
+                        }
                         break;
                     case 2:
                         Console.Clear();
@@ -917,9 +926,32 @@ namespace FilRouge
              else if (personnel is Zombie) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
              else Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
         }
+
+
         public void Sortie_Critere_CSV()
         {
+            int critere;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Dans un fichier CSV situé à l'emplacement C:/temp/write.csv");
+                Console.WriteLine("Veuillez saisir un critère parmi les propositions suivantes.\nTappez 1. Si vous voulez afficher afficher la liste du personnel par categorie.\n" +
+                    "Tappez 2. Si vous voulez afficher la liste des attractions en maintenance.");
+                critere = int.Parse(Console.ReadLine());
+                switch (critere)
+                {
+                    case 1:
+                        this.AfficherSelonCategorie();
+                        break;
+                    case 2:
 
+                        break;
+                    default:
+                        Program.MessageErreur();
+                        break;
+
+                }
+            } while (critere != 1 && critere != 2);
         }
 
         #endregion
