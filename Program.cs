@@ -51,7 +51,7 @@ namespace FilRouge
 
                         break;
                     case 4:
-
+                        adm.SortieSelonCritere();
                         break;
                     case 5:
 

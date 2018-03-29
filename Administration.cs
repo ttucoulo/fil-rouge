@@ -93,6 +93,37 @@ namespace FilRouge
                 }
             } while (numero!=1 && numero !=2);
         }
+        public void ChangeFonction(Personnel personnel, string new_fonction)
+        {
+            personnel.Fonction = new_fonction;
+        }
+        public void ChangeAffectation(Monstre monstre, int new_affectation)
+        {
+            monstre.Affectation = new_affectation;
+        }
+        public void SortieSelonCritere()
+        {
+            int sortie;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Mode de sortie ?\nTappez 1. Console.\nTappez 2. CSV.");
+                sortie = int.Parse(Console.ReadLine());
+                switch (sortie)
+                {
+                    case 1:
+                        this.Sortie_Critere_Console();
+                        break;
+                    case 2:
+                        this.Sortie_Critere_CSV();
+                        break;
+                    default:
+                        Program.MessageErreur();
+                    break;
+                  
+                }
+            } while (sortie != 1 && sortie != 2);
+        }
 
         #endregion
 
@@ -725,6 +756,170 @@ namespace FilRouge
                 }
             } while (numero != 1 && numero != 2 && numero != 3 && numero != 4);
             Console.WriteLine("Votre Attraction a été ajoutée au logiciel.");
+        }
+        public void Sortie_Critere_Console()
+        {
+            int critere;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Veuillez saisir un critère parmi les propositions suivantes.\nTappez 1. Si vous voulez afficher afficher la liste du personnel par categorie.\n" +
+                    "Tappez 2. Si vous voulez afficher la liste des attractions en maintenance.");
+                critere = int.Parse(Console.ReadLine());
+                switch (critere)
+                {
+                    case 1:
+                        this.AfficherSelonCategorie();
+                        break;
+                    case 2:
+
+                        break;
+                    default:
+                        Program.MessageErreur();
+                        break;
+                    
+                }
+            } while (critere !=1 && critere!=2);
+        }
+        public void AfficherSelonCategorie()
+        {
+            int numero_personnel;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Liste du personnel par catégorie.");
+                Console.WriteLine("Tappez 1. Par Sorcier.\nTappez 2. Par Monstre.\nTappez 3. Par Demon.\nTappez 4. Par Vampire.\nTappez 5. Par Loup Garou.\n" +
+                    "Tappez 6. Par Zombie.\nTappez 7. Par Fantome.");
+                numero_personnel = int.Parse(Console.ReadLine());
+                switch (numero_personnel)
+                {
+                    case 1:
+                        Console.Clear();
+                        int c = 1;
+                        Console.WriteLine("Liste des Sorciers :");
+                        for (int i=0;i< this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Sorcier)
+                            {
+                                Console.Write(c + ". ");
+                                this.AfficherParPersonnel((Sorcier)this.toutLePersonnel[i]);
+                                c++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        int b = 1;
+                        Console.WriteLine("Liste des Monstres :");
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Monstre && !(this.toutLePersonnel[i] is Demon)
+                                && !(this.toutLePersonnel[i] is Zombie) && !(this.toutLePersonnel[i] is Vampire)
+                                && !(this.toutLePersonnel[i] is Fantome) && !(this.toutLePersonnel[i] is LoupGarou))
+                            {
+                                Console.Write(b + ". ");
+                                this.AfficherParPersonnel((Monstre)this.toutLePersonnel[i]);
+                                b++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Liste des Demons :");
+                        int a = 1;
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Demon)
+                            {
+                                Console.Write(a + ". ");
+                                this.AfficherParPersonnel((Demon)this.toutLePersonnel[i]);
+                                a++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        int x = 1;
+                        Console.WriteLine("Liste des Vampires :");
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Vampire)
+                            {
+                                Console.Write(x + ". ");
+                                this.AfficherParPersonnel((Vampire)this.toutLePersonnel[i]);
+                                x++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("Liste des Loup-Garous :");
+                        int l = 1;
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is LoupGarou)
+                            {
+                                Console.Write(l + ". ");
+                                this.AfficherParPersonnel((LoupGarou)this.toutLePersonnel[i]);
+                                l++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 6:
+                        Console.Clear();
+                        int j = 1;
+                        Console.WriteLine("Liste des Zombies :");
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Zombie)
+                            {
+                                Console.Write(j + ". ");
+                                this.AfficherParPersonnel((Zombie)this.toutLePersonnel[i]);
+                                j++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 7:
+                        Console.Clear();
+                        Console.WriteLine("Liste des Fantomes :");
+                        int k = 1;
+                        for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                        {
+                            if (this.toutLePersonnel[i] is Fantome)
+                            {
+                                Console.Write(k + ". ");
+                                this.AfficherParPersonnel((Fantome)this.toutLePersonnel[i]);
+                                k++;
+                            }
+                        }
+                        Console.ReadKey();
+                        break;
+                    default:
+                        Program.MessageErreur();
+                        break;
+                }
+            } while (numero_personnel != 1 && numero_personnel != 2 && numero_personnel != 3 && numero_personnel != 4 
+            && numero_personnel != 5 && numero_personnel != 6 && numero_personnel != 7);
+        }
+        public void AfficherParPersonnel(Personnel personnel)
+        {
+             if (personnel is Sorcier) Console.WriteLine(personnel.Prenom+" " + personnel.Nom);
+             else if (personnel is Demon) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Vampire) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is LoupGarou) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Fantome) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else if (personnel is Zombie) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             else Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
+        }
+        public void Sortie_Critere_CSV()
+        {
+
         }
 
         #endregion

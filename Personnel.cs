@@ -38,6 +38,7 @@ namespace FilRouge
         public string Fonction
         {
             get { return this.fonction; }
+            set { this.fonction = value; }
         }
         public TypeSexe Sexe
         {
