@@ -452,11 +452,104 @@ namespace FilRouge
         }
         public void AjouterRollerCoasterManu()
         {
-
+            Console.WriteLine("RollerCoaster.");
+            Console.WriteLine("Besoin specifique ?\nTappez 1. Oui\nTappez 2. Non.");
+            int numero = int.Parse(Console.ReadLine());
+            bool besoinSpecifique = false;
+            do
+            {
+                switch (numero)
+                {
+                    case 1:
+                        besoinSpecifique = true;
+                        break;
+                    case 2:
+                        besoinSpecifique = false;
+                        break;
+                    default:
+                        break;
+                }
+            } while (numero != 1 && numero != 2);
+            Console.WriteLine("Veuillez saisir l'id de l'attraction.");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir le nombre minmum de monstres.");
+            int nombreMinimumMonstre = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir le nom de l'attraction.");
+            string nom = Console.ReadLine();
+            Console.WriteLine("Veuillez saisir le type de besoin.");
+            string typeBesoin = Console.ReadLine();
+            Console.WriteLine("Veuillez saisir un age minimum.");
+            int ageMini = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir un type de Categorie de votre Attraction parmi les trois cas suivants :\nAssise.\nInversee.\nBobsleigh.");
+            string categorie_string = Console.ReadLine();
+            TypeCategorie categorie = CastToCategorie(categorie_string);
+            Console.WriteLine("Veuillez saisir une taille minimum.");
+            float tailleMinimum = (float)Convert.ToDouble(Console.ReadLine());
+            this.attractions.Add(new RollerCoaster(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,ageMini,categorie,tailleMinimum));
         }
         public void AjouterSpectacleManu()
         {
+            Console.WriteLine("Spectacle.");
+            Console.WriteLine("Besoin specifique ?\nTappez 1. Oui\nTappez 2. Non.");
+            int numero = int.Parse(Console.ReadLine());
+            bool besoinSpecifique = false;
+            do
+            {
+                switch (numero)
+                {
+                    case 1:
+                        besoinSpecifique = true;
+                        break;
+                    case 2:
+                        besoinSpecifique = false;
+                        break;
+                    default:
+                        break;
+                }
+            } while (numero != 1 && numero != 2);
+            Console.WriteLine("Veuillez saisir l'id de l'attraction.");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir le nombre minmum de monstres.");
+            int nombreMinimumMonstre = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir le nom de l'attraction.");
+            string nom = Console.ReadLine();
+            Console.WriteLine("Veuillez saisir le type de besoin.");
+            string typeBesoin = Console.ReadLine();
 
+            Console.WriteLine("Veuillez saisir le nombre de places pour le spectacle.");
+            int nbPlaces = int.Parse(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir le nom de la salle.");
+            string nomSalle = Console.ReadLine();
+            Console.WriteLine("Veuillez saisir les horaires du spectacle.");
+            int stop;
+            List<DateTime> liste_horaires = new List<DateTime>();
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Ajouter une horaire ?. 1. (oui)\n2. (non)");
+                stop = int.Parse(Console.ReadLine());
+                switch (stop)
+                {
+                    case 1:
+                        Console.WriteLine("Veuillez saisir l'heure de debut de seance.");
+                        int horaire_debut_heure = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Veuillez saisir la minute du debut de seance.");
+                        int horaire_debut_minute = int.Parse(Console.ReadLine());
+                        liste_horaires.Add(new DateTime(1,1,1,horaire_debut_heure,horaire_debut_minute,0));
+                        Console.WriteLine("Veuillez saisir l'heure de fin de seance.");
+                        int horaire_fin_heure = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Veuillez saisir la minute de fin de seance.");
+                        int horaire_fin_minute = int.Parse(Console.ReadLine());
+                        liste_horaires.Add(new DateTime(1, 1, 1, horaire_fin_heure, horaire_fin_minute, 0));
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (stop != 2);
+            this.attractions.Add(new Spectacle(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,liste_horaires,nbPlaces,nomSalle));
         }
         #endregion
 
