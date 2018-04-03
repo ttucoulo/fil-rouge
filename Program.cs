@@ -59,7 +59,7 @@ namespace FilRouge
                         break;
                     case 6:
                         //Pour effectuer des tests et verifier que tout est bon!
-                        Console.WriteLine(adm.ToutLePersonnel[12].Nom);
+                        Console.WriteLine(adm.Attractions[adm.Attractions.Count() - 1].Equipe.Count());
                         Console.ReadKey();
                         break;
                     case 0:

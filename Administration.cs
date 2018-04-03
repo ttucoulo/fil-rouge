@@ -135,89 +135,59 @@ namespace FilRouge
         }
         public void AddMonstre( string [] tab)
         {
-            this.toutLePersonnel.Add(new Monstre(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((Monstre)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            Monstre new_monstre = new Monstre(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]));
+            this.toutLePersonnel.Add(new_monstre);
+            CheckAttraction(new_monstre);
         }
         public void AddDemon( string [] tab)
         {
-            this.toutLePersonnel.Add(new Demon(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToInt(tab[8])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((Demon)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            Demon new_demon = new Demon(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToInt(tab[8]));
+            this.toutLePersonnel.Add(new_demon);
+            CheckAttraction(new_demon);
         }
         public void AddFantome(string [] tab)
         {
-            this.toutLePersonnel.Add(new Fantome(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((Fantome)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            Fantome new_fantome = new Fantome(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]));
+            this.toutLePersonnel.Add(new_fantome);
+            CheckAttraction(new_fantome);
         }
         public void AddLoupGarou(string [] tab)
         {
-            this.toutLePersonnel.Add(new LoupGarou(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), Convert.ToDouble(tab[8])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((LoupGarou)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            LoupGarou new_loupGarou = new LoupGarou(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), Convert.ToDouble(tab[8]));
+            this.toutLePersonnel.Add(new_loupGarou);
+            CheckAttraction(new_loupGarou);
         }
         public void AddVampire(string [] tab)
         {
-            this.toutLePersonnel.Add(new Vampire(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), (float)Convert.ToDouble(tab[8])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((Vampire)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            Vampire new_vampire = new Vampire(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), (float)Convert.ToDouble(tab[8]));
+            this.toutLePersonnel.Add(new_vampire);
+            CheckAttraction(new_vampire);
         }
         public void AddZombie(string [] tab)
         {
-            this.toutLePersonnel.Add(new Zombie(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToCouleurZ(tab[8]), CastToInt(tab[9])));
-            for (int i = 0; i < this.attractions.Count(); i++)
-            {
-                if (this.attractions[i].Id == CastToInt(tab[7]))
-                {
-                    this.attractions[i].Equipe.Add((Zombie)this.toutLePersonnel[this.toutLePersonnel.Count() - 1]);
-                }
-            }
+            Zombie new_zombie = new Zombie(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToCouleurZ(tab[8]), CastToInt(tab[9]));
+            this.toutLePersonnel.Add(new_zombie);
+            CheckAttraction(new_zombie);
         }
         public void AddBoutique(string [] tab)
         {
             this.attractions.Add(new Boutique(bool.Parse(tab[4]), CastToInt(tab[1]), CastToInt(tab[3]), tab[2], tab[5], CastToTypeBoutique(tab[6])));
-            this.AddMonstreToAttraction(tab);
+            this.CheckMonstre(int.Parse(tab[1]));
         }
         public void AddDarkRide(string [] tab)
         {
             this.attractions.Add(new Darkride(bool.Parse(tab[4]), CastToInt(tab[1]), CastToInt(tab[3]), tab[2], tab[5], new TimeSpan(0, int.Parse(tab[6]), 0), bool.Parse(tab[7])));
-            this.AddMonstreToAttraction(tab);
+            this.CheckMonstre(int.Parse(tab[1]));
         }
         public void AddRollerCoaster(string [] tab)
         {
             this.attractions.Add(new RollerCoaster(bool.Parse(tab[4]), CastToInt(tab[1]), CastToInt(tab[3]), tab[2], tab[5], CastToInt(tab[7]), CastToCategorie(tab[6]), (float)Convert.ToDouble(tab[8])));
-            this.AddMonstreToAttraction(tab);
+            this.CheckMonstre(int.Parse(tab[1]));
         }
         public void AddSpectacle(string[] tab)
         {
             this.attractions.Add(new Spectacle(bool.Parse(tab[4]), CastToInt(tab[1]), CastToInt(tab[3]), tab[2], tab[5], ReturnListeDateTime(tab[8]), CastToInt(tab[7]), tab[6]));
-            this.AddMonstreToAttraction(tab);
+            this.CheckMonstre(int.Parse(tab[1]));
         }
 
         #endregion
@@ -283,7 +253,9 @@ namespace FilRouge
             int affectation = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
-            this.toutLePersonnel.Add(new Monstre(matricule, nom, prenom, sexe, fonction, affectation, cagnotte));
+            Monstre new_monstre = new Monstre(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
+            this.toutLePersonnel.Add(new_monstre);
+            this.CheckAttraction(new_monstre);
         }
         public void AjouterVampireManu()
         {
@@ -305,7 +277,9 @@ namespace FilRouge
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir un indice de luminosite.");
             float luminosite = (float)Convert.ToDouble(Console.ReadLine());
-            this.toutLePersonnel.Add(new Vampire(matricule, nom, prenom, sexe, fonction, affectation, cagnotte,luminosite));
+            Vampire new_vampire = new Vampire(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, luminosite);
+            this.toutLePersonnel.Add(new_vampire);
+            this.CheckAttraction(new_vampire);
         }
         public void AjouterZombieManu()
         {
@@ -330,7 +304,9 @@ namespace FilRouge
             CouleurZ teint = CastToCouleurZ(teint_string);
             Console.WriteLine("Veuillez saisir un degre de decomposition.");
             int decomposition = int.Parse(Console.ReadLine());
-            this.toutLePersonnel.Add(new Zombie(matricule, nom, prenom, sexe, fonction, affectation, cagnotte,teint,decomposition));
+            Zombie new_zombie = new Zombie(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, teint, decomposition);
+            this.toutLePersonnel.Add(new_zombie);
+            this.CheckAttraction(new_zombie);
         }
         public void AjouterLoupGarouManu()
         {
@@ -352,7 +328,9 @@ namespace FilRouge
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir un indice de cruaute.");
             int cruaute = int.Parse(Console.ReadLine());
-            this.toutLePersonnel.Add(new LoupGarou(matricule, nom, prenom, sexe, fonction, affectation, cagnotte,cruaute ));
+            LoupGarou new_loupGarou = new LoupGarou(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, cruaute);
+            this.toutLePersonnel.Add(new_loupGarou);
+            this.CheckAttraction(new_loupGarou);
         }
         public void AjouterFantomeManu()
         {
@@ -372,7 +350,9 @@ namespace FilRouge
             int affectation = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
-            this.toutLePersonnel.Add(new Fantome(matricule, nom, prenom, sexe, fonction, affectation, cagnotte));
+            Fantome new_fantome = new Fantome(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
+            this.toutLePersonnel.Add(new_fantome);
+            this.CheckAttraction(new_fantome);
         }
         public void AjouterDemonManu()
         {
@@ -394,7 +374,9 @@ namespace FilRouge
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir une force pour le demon.");
             int force = int.Parse(Console.ReadLine());
-            this.toutLePersonnel.Add(new Demon(matricule, nom, prenom, sexe, fonction, affectation, cagnotte,force));
+            Demon new_demon = new Demon(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, force);
+            this.toutLePersonnel.Add(new_demon);
+            this.CheckAttraction(new_demon);
         }
         public void AjouterBoutiqueManu()
         {
@@ -428,6 +410,7 @@ namespace FilRouge
             string typeBoutique_string = Console.ReadLine();
             TypeBoutique typeBoutique = CastToTypeBoutique(typeBoutique_string);
             this.attractions.Add(new Boutique(besoinSpecifique, id,nombreMinimumMonstre,nom,typeBesoin,typeBoutique));
+            this.CheckMonstre(id);
         }
         public void AjouterDarkRideManu()
         {
@@ -480,6 +463,7 @@ namespace FilRouge
                 }
             } while (numero != 1 && numero != 2);
             this.attractions.Add(new Darkride(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,duree,vehicule));
+            this.CheckMonstre(id);
         }
         public void AjouterRollerCoasterManu()
         {
@@ -517,6 +501,7 @@ namespace FilRouge
             Console.WriteLine("Veuillez saisir une taille minimum.");
             float tailleMinimum = (float)Convert.ToDouble(Console.ReadLine());
             this.attractions.Add(new RollerCoaster(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,ageMini,categorie,tailleMinimum));
+            this.CheckMonstre(id);
         }
         public void AjouterSpectacleManu()
         {
@@ -581,6 +566,7 @@ namespace FilRouge
 
             } while (stop != 2);
             this.attractions.Add(new Spectacle(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,liste_horaires,nbPlaces,nomSalle));
+            this.CheckMonstre(id);
         }
         #endregion
 
@@ -643,7 +629,7 @@ namespace FilRouge
         #endregion
 
         #region METHODES UTILISEES
-
+        
         public string Fonction_Personnel(string fonction)
         {
             if (fonction == "neant")
@@ -652,11 +638,11 @@ namespace FilRouge
             }
             else return fonction;
         }
-        public void AddMonstreToAttraction(string[] tab)
+        public void CheckMonstre(int idAttraction)
         {
             for (int i = 0; i < this.toutLePersonnel.Count(); i++)
             {
-                if (this.toutLePersonnel[i] is Monstre && ((Monstre)this.toutLePersonnel[i]).Affectation == int.Parse(tab[1]))
+                if (this.toutLePersonnel[i] is Monstre && ((Monstre)this.toutLePersonnel[i]).Affectation == idAttraction)
                 {
                     if (this.toutLePersonnel[i] is Vampire) this.attractions[this.attractions.Count() - 1].Equipe.Add((Vampire)this.toutLePersonnel[i]);
                     else if (this.toutLePersonnel[i] is Demon) this.attractions[this.attractions.Count() - 1].Equipe.Add((Demon)this.toutLePersonnel[i]);
@@ -664,6 +650,16 @@ namespace FilRouge
                     else if (this.toutLePersonnel[i] is LoupGarou) this.attractions[this.attractions.Count() - 1].Equipe.Add((LoupGarou)this.toutLePersonnel[i]);
                     else if (this.toutLePersonnel[i] is Fantome) this.attractions[this.attractions.Count() - 1].Equipe.Add((Fantome)this.toutLePersonnel[i]);
                     else this.attractions[this.attractions.Count() - 1].Equipe.Add((Monstre)this.toutLePersonnel[i]);
+                }
+            }
+        }
+        public void CheckAttraction(Monstre monstre)
+        {
+            for (int i = 0; i < this.attractions.Count(); i++)
+            {
+                if (this.attractions[i].Id == monstre.Affectation)
+                {
+                    this.attractions[i].Equipe.Add(monstre);
                 }
             }
         }
@@ -943,33 +939,7 @@ namespace FilRouge
              else if(personnel is Monstre && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
              else fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
         }
-
-
-        public void Sortie_Critere_CSV()
-        {
-            int critere;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("Dans un fichier CSV situé à l'emplacement C:/temp/write.csv");
-                Console.WriteLine("Veuillez saisir un critère parmi les propositions suivantes.\nTappez 1. Si vous voulez afficher afficher la liste du personnel par categorie.\n" +
-                    "Tappez 2. Si vous voulez afficher la liste des attractions en maintenance.");
-                critere = int.Parse(Console.ReadLine());
-                switch (critere)
-                {
-                    case 1:
-                        break;
-                    case 2:
-
-                        break;
-                    default:
-                        Program.MessageErreur();
-                        break;
-
-                }
-            } while (critere != 1 && critere != 2);
-        }
-
+        
         #endregion
 
         #region ACCESSEURS
