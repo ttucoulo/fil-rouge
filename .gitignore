@@ -35,8 +35,8 @@
 *.i*86
 *.x86_64
 *.hex
-
 *.suo
+*.pdb
 
 # Debug files
 *.dSYM/
@@ -45,6 +45,7 @@
 *.pdb
 *.exe
 *.pdb
+*.suo
 
 # Kernel Module Compile Results
 *.mod*
