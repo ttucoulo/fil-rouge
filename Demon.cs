@@ -15,5 +15,9 @@ namespace FilRouge
         {
             this.force = force1;
         }
+        public int Force
+        {
+            get { return this.force; }
+        }
     }
 }
