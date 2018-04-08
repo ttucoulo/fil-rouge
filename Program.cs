@@ -18,7 +18,24 @@ namespace FilRouge
         static void Main(string[] args)
         {
             Administration adm = new Administration();
-            Menu(adm);
+            int numero;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Tappez 1. Demo ?\nTappez 2. Menu pour verifier chaque action individuellement.");
+                numero = int.Parse(Console.ReadLine());
+                switch (numero)
+                {
+                    case 1:
+                        Demo(adm);
+                        break;
+                    case 2:
+                        Menu(adm);
+                        break;
+                    default:
+                        break;
+                }
+            } while (numero != 1 && numero != 2);
         }
 
         public static void AffichageActions()
@@ -74,6 +91,65 @@ namespace FilRouge
         public static void MessageErreur()
         {
             Console.WriteLine("Veuillez saisir une action existante svp.\nVeuillez saisir une touche pour revenir au menu.");
+            Console.ReadKey();
+        }
+        public static void Demo(Administration adm)
+        {
+            Console.Clear();
+            Console.WriteLine("Bienvenue dans le logiciel de gestion administrative du parc Zombillenium.");
+            Console.WriteLine("Vous allez assister à une demo de notre logiciel. Pour passer à l'action suivante, vous presserez une touche.");
+            Console.WriteLine("Pour commencer, veuillez appuyez sur une touche.");
+            Console.ReadKey();
+            Console.WriteLine("Tout d'abord, nous allons charger les membres du personnel et les attractions du fichier csv Listing.csv");
+            adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
+            Console.WriteLine("Ca y est, tous les membres du personnel et attractions ont été ajoutés avec succès.");
+            Console.ReadKey();
+            Console.WriteLine("Maintenant, je vais ajouter manuellement un membre du personnel avec les critères suivants :\n" +
+                "Zombie, 66001, Dupont Bernard, Male , assistant , 645 , 5000 , 1.3 ");
+            Vampire new_vampire = new Vampire(66001, "Dupont", "Bernard", TypeSexe.male, "assistant", 645, 5000, (float)1.3);
+            adm.ToutLePersonnel.Add(new_vampire);
+            adm.CheckAttraction(new_vampire);
+            Console.WriteLine("Ajout effectué.");
+            Console.WriteLine("Je vais ajouter manuellement une attraction avec les critères suivants :\n" +
+                "RollerCoaster, pas de besoin specifique, 118, 9 monstres minimum, Falaises dangereuses, zombie, 11 ans minimum, Assise, 1.25 m minimum");
+            RollerCoaster new_rollercoaster = new RollerCoaster(false,118,9,"Falaises dangereuses","zombie",11,TypeCategorie.assise,(float)1.25);
+            adm.Attractions.Add(new_rollercoaster);
+            adm.CheckMonstre(new_rollercoaster.Id);
+            Console.WriteLine("Ajout effectué.");
+            Console.ReadKey();
+            Console.WriteLine("On va maintenant faire evoluer les membres du personnel");
+            Console.WriteLine("La directrice Communication va passer Directrice recrutement");
+            for(int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+            {
+                if(adm.ToutLePersonnel[i].Fonction=="directrice Communication")
+                {
+                    adm.ChangeFonction(adm.ToutLePersonnel[i], "directrice Recrutement");
+                }
+            }
+            Console.WriteLine("Changement de fonction effectué");
+            Console.WriteLine("Changeons l'affectation du demon Aurelien Zahner");
+            for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+            {
+                if (adm.ToutLePersonnel[i] is Monstre && adm.ToutLePersonnel[i].Nom == "Zahner" && adm.ToutLePersonnel[i].Prenom=="Aurelien" )
+                {
+                    adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[i], 645);
+                }
+            }
+            Console.WriteLine("Chagement d'affectation effectué");
+            Console.ReadKey();
+            Console.WriteLine("Maintenant, on va sortir tous les Vampires de nos membres du personnel en sortie console et en même temps dans un fichier csv qui s'appelera write.csv.");
+            string nomFichier = "C:/temp/write.csv";
+            StreamWriter fichEcrire = new StreamWriter(nomFichier, true);
+            for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+            {
+                if (adm.ToutLePersonnel[i] is Vampire)
+                {
+                    adm.AfficherParPersonnel(adm.ToutLePersonnel[i], true, fichEcrire);
+                    adm.AfficherParPersonnel(adm.ToutLePersonnel[i], false, fichEcrire);
+                }
+            }
+            fichEcrire.Close();
+            Console.WriteLine("Les Vampires ont été affichés en console et sont affichés dans le fichier csv.");
             Console.ReadKey();
         }
     }

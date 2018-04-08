@@ -123,7 +123,7 @@ namespace FilRouge
                   
                 }
             } while (sortie != 1 && sortie != 2);
-        }
+        } 
 
         #endregion
 
