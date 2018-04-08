@@ -73,5 +73,25 @@ namespace FilRouge
             get { return this.equipe; }
             set { this.equipe = value; }
         }
+        public bool Maintenance
+        {
+            get { return this.maintenance; }
+            set { this.maintenance = value; }
+        }
+        public TimeSpan DureeMaintenance
+        {
+            get { return this.dureeMaintenance; }
+            set { this.dureeMaintenance = value; }
+        }
+        public string NatureMaintenance
+        {
+            get { return this.natureMaintenance; }
+            set { this.natureMaintenance = value; }
+        }
+        public bool Ouvert
+        {
+            get { return this.ouvert; }
+            set { this.ouvert = value; }
+        }
     }
 }

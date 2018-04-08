@@ -110,12 +110,25 @@ namespace FilRouge
             adm.ToutLePersonnel.Add(new_vampire);
             adm.CheckAttraction(new_vampire);
             Console.WriteLine("Ajout effectué.");
-            Console.WriteLine("Je vais ajouter manuellement une attraction avec les critères suivants :\n" +
-                "RollerCoaster, pas de besoin specifique, 118, 9 monstres minimum, Falaises dangereuses, zombie, 11 ans minimum, Assise, 1.25 m minimum");
+            Console.WriteLine("Je vais ajouter manuellement une attraction sans maintenance avec les critères suivants :\n" +
+                "RollerCoaster, pas de besoin specifique, 118, 1 monstre minimum, Falaises dangereuses, zombie, 11 ans minimum, Assise, 1.25 m minimum");
             RollerCoaster new_rollercoaster = new RollerCoaster(false,118,9,"Falaises dangereuses","zombie",11,TypeCategorie.assise,(float)1.25);
             adm.Attractions.Add(new_rollercoaster);
             adm.CheckMonstre(new_rollercoaster.Id);
             Console.WriteLine("Ajout effectué.");
+            Console.WriteLine("Et puis deux autres attractions en maintenance. \nDarkride, pas de besoin specifique, 48h de maintenance, equipe :Bernard Dupont ajouté precedemment, " +
+                "429, en maintenance,reparation, 1 monstre minmum, Balade montagneuse, fermée, vampire, 15min,en vehicule.\n" +
+                "Boutique, pas de besoin specifique, 24h de maintenance, equipe : un monstre quelconque de la liste, 625, en maintenance,reparation,1 monstre minimum, Sensations fortes, fermée, monstre,souvenir");
+            List<Monstre> liste = new List<Monstre>();
+            liste.Add(new_vampire);
+            Darkride new_darkride = new Darkride(false, new TimeSpan(48,0,0),liste,429,true,"reparation",1,"Balade montagneuse",false,"vampire",new TimeSpan(0,15,0),true);
+            adm.Attractions.Add(new_darkride);
+            adm.CheckMonstre(new_darkride.Id);
+            List<Monstre> liste1 = new List<Monstre>();
+            liste1.Add((Monstre)adm.ToutLePersonnel[3]);
+            Boutique new_boutique = new Boutique(false, new TimeSpan(24, 0, 0), liste1, 625, true, "reperation", 1, "Tout pour 1 euro", false, "monstre", TypeBoutique.souvenir);
+            adm.Attractions.Add(new_boutique);
+            adm.CheckMonstre(new_boutique.Id);
             Console.ReadKey();
             Console.WriteLine("On va maintenant faire evoluer les membres du personnel");
             Console.WriteLine("La directrice Communication va passer Directrice recrutement");
@@ -150,6 +163,23 @@ namespace FilRouge
             }
             fichEcrire.Close();
             Console.WriteLine("Les Vampires ont été affichés en console et sont affichés dans le fichier csv.");
+            Console.ReadKey();
+            Console.WriteLine("Nous allons trier la liste des attractions par ordre croissant d'identifiants");
+            adm.Tri_attractions();
+            Console.WriteLine("Tri fait avec succès");
+            Console.ReadKey();
+            Console.WriteLine("Changeons la boutique Tout pour 1 euro du statut maintenance à ouvert.");
+            for (int i = 0; i < adm.Attractions.Count(); i++)
+            {
+                if(adm.Attractions[i].Nom=="Tout pour 1 euro")
+                {
+                    adm.Attractions[i].Ouvert = true;
+                    adm.Attractions[i].Maintenance = false;
+                    adm.Attractions[i].DureeMaintenance = new TimeSpan(0, 0, 0);
+                    adm.Attractions[i].NatureMaintenance = "";
+                }
+            }
+            Console.WriteLine("Ouverture de l'attraction effectuée.");
             Console.ReadKey();
         }
     }

@@ -124,12 +124,6 @@ namespace FilRouge
                 }
             } while (sortie != 1 && sortie != 2);
         } 
-        public void Tri ()
-        {
-            Console.WriteLine("Nous allons trier la liste des attractions par ordre croissant d'identifiants");
-            Tri_attractions();
-            Console.WriteLine("Tir fait avec succès");
-        }
         #endregion
 
         #region ADD_MONSTRE/ATTRACTION FROM CSV
