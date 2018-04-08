@@ -124,7 +124,12 @@ namespace FilRouge
                 }
             } while (sortie != 1 && sortie != 2);
         } 
-
+        public void Tri ()
+        {
+            Console.WriteLine("Nous allons trier la liste des attractions par ordre croissant d'identifiants");
+            Tri_attractions();
+            Console.WriteLine("Tir fait avec succès");
+        }
         #endregion
 
         #region ADD_MONSTRE/ATTRACTION FROM CSV
@@ -939,7 +944,28 @@ namespace FilRouge
              else if(personnel is Monstre && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
              else fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
         }
-        
+        public void Tri_attractions ()//tri par ordre d ID croissant le liste des attractions
+        {
+            if(this.attractions!= null)
+            {
+                for (int i = 0; i < this.attractions.Count; i++)
+                {
+                    for (int j = 0; j < this.attractions.Count - 1; j++)
+                    {
+                        if (this.attractions[i].Id > this.attractions[i + 1].Id)
+                        {
+                            Attraction temp = this.attractions[i];
+                            this.attractions[i] = this.attractions[i + 1];
+                            this.attractions[i + 1] = temp;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("la liste des attractions est vide, le chargement des données a t il été bien fait au préalable ?");
+            }
+        }
         #endregion
 
         #region ACCESSEURS
