@@ -942,9 +942,9 @@ namespace FilRouge
         {
             if(this.attractions!= null)
             {
-                for (int j = 0; j < this.attractions.Count; j++)
+                for (int j = 0; j < this.attractions.Count(); j++)
                 {
-                    for (int i = 0; i < this.attractions.Count - 1; i++)
+                    for (int i = 0; i < this.attractions.Count() - 1; i++)
                     {
                         if (this.attractions[i].Id > this.attractions[i + 1].Id)
                         {
@@ -964,26 +964,41 @@ namespace FilRouge
         {
             if(this.toutLePersonnel != null)
             {
-                for(int j=0;j<this.toutLePersonnel.Count;j++)
+                for(int j=0;j<this.toutLePersonnel.Count();j++)
                 {
                     int k = 0;
-                    int i = 1;
-                    if (this.toutLePersonnel[k] is Demon && k < this.toutLePersonnel.Count && i < this.toutLePersonnel.Count)
+                    do
                     {
-                        if (this.toutLePersonnel[i] is Demon && i != k)
+                        int i = 1;
+                        if (this.toutLePersonnel[k] is Demon && k < this.toutLePersonnel.Count() && i < this.toutLePersonnel.Count())
                         {
-                            if (((Demon)this.toutLePersonnel[k]).Force > ((Demon)this.toutLePersonnel[i]).Force)
+                            do
                             {
-                                Demon temp = (Demon)this.toutLePersonnel[k];
-                                this.toutLePersonnel[k] = (Demon)this.toutLePersonnel[i];
-                                this.toutLePersonnel[i] = temp;
+                            if (this.toutLePersonnel[i] is Demon && i != k)
+                            {
+                                if (((Demon)this.toutLePersonnel[k]).Force < ((Demon)this.toutLePersonnel[i]).Force)
+                                {
+                                    Demon temp = (Demon)this.toutLePersonnel[i];
+                                    this.toutLePersonnel[i] = (Demon)this.toutLePersonnel[k];
+                                    this.toutLePersonnel[k] = temp;
+                                }
+                                
                             }
+                                i++;
+                            } while (i < this.toutLePersonnel.Count()); 
                         }
-                        i++;
-                    }
-                    k++;
+                        k++;
+                    } while (k < this.toutLePersonnel.Count());
                 }
-                
+                foreach( Personnel a in this.toutLePersonnel)
+                {
+                    if(a is Demon)
+                    {
+                        Console.WriteLine(((Demon)a).Force);
+                    }
+                    
+                }
+                Console.ReadKey();
             }
             else
             {
