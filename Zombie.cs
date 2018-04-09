@@ -22,6 +22,10 @@ namespace FilRouge
         {
 
         }
-
+        public override string ToString()
+        {
+            return (base.ToString() +
+                "Degre de décomposition : " + this.degreDecomposition + " teint :"+this.teint);
+        }
     }
 }

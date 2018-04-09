@@ -19,5 +19,10 @@ namespace FilRouge
         {
 
         }
+        public override string ToString()
+        {
+            return (base.ToString() +
+                "indice cruauté : " + this.indiceCruaute);
+        }
     }
 }

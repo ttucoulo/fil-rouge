@@ -23,6 +23,11 @@ namespace FilRouge
         {
 
         }
+        
+        public override string ToString()
+        {
+            return "Prenom: "+this.Prenom+" Nom : "+this.Nom +" Fonction : "+this.Fonction+" matricule : "+this.Matricule+"affectation : " + this.affectation + " cagnotte : " + this.cagnotte.ToString();
+        }
 
         public int Affectation
         {

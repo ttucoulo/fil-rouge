@@ -18,7 +18,7 @@ namespace FilRouge
 
         public override void ModifierCagnotte(Monstre monstre,int cagnotte)
         {
-            if(this.Prenom.ToLower()=="rose" && this.Nom.ToLower()=="von bloodt")
+             if(this.Prenom.ToLower()=="rose" && this.Nom.ToLower()=="von bloodt")
             {
                 monstre.Cagnotte += cagnotte;
                 if (monstre.Cagnotte < 50)
@@ -30,6 +30,11 @@ namespace FilRouge
                     monstre.Affectation = 1000;
                 }
             }
+        }
+        public override string ToString()
+        {
+            return (base.ToString() +
+                "indiceLuminosité : " + this.indiceLuminosite);
         }
 
     }

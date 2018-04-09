@@ -81,12 +81,12 @@ namespace FilRouge
                         adm.SortieSelonCritere();
                         break;
                     case 5:
+                        Console.WriteLine("Trions les cagnottes des monstres par ordre croissant");
                         //adm.Tri_Demons();
                         adm.Tri_Monstres();
                         break;
                     case 6:
-                        //Pour effectuer des tests et verifier que tout est bon!
-                        Console.WriteLine(adm.Attractions[adm.Attractions.Count() - 1].Equipe.Count());
+                        
                         Console.ReadKey();
                         break;
                     case 0:
@@ -159,9 +159,9 @@ namespace FilRouge
                     adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[i], 645);
                 }
             }
-            Console.WriteLine("Chagement d'affectation effectué");
+            Console.WriteLine("Changement d'affectation effectué");
             Console.ReadKey();
-            Console.WriteLine("Maintenant, on va sortir tous les Vampires de nos membres du personnel en sortie console et en même temps dans un fichier csv qui s'appelera write.csv.");
+            Console.WriteLine("Maintenant, on va sortir tous les Vampires de nos membres du personnel en sortie console et en même temps dans un fichier csv qui s'appelera write.csv.\n\n");
             string nomFichier = "C:/temp/write.csv";
             StreamWriter fichEcrire = new StreamWriter(nomFichier, true);
             for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
@@ -191,7 +191,7 @@ namespace FilRouge
             adm.ChangeOuverture();
             Console.WriteLine("Ouverture de l'attraction effectuée.");
             Console.ReadKey();
-            Console.WriteLine("Sortons toutes les atractions en maintenance.");
+            Console.WriteLine("Sortons toutes les attractions en maintenance.");
             adm.AttractionEnMaintenance(true);    //Affichage console
             adm.AttractionEnMaintenance(false);   //Affichage csv
             Console.ReadKey();
@@ -204,8 +204,8 @@ namespace FilRouge
                 }
             }
             Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
-              " qu'une affectation à 1000 correspond à une circulation dans le parc.");
-            Console.WriteLine(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
+              " qu'une affectation à 1000 correspond à une circulation dans le parc et qu'une affectation à 684 correspond à un stand à barbe a papa.");
+            Console.WriteLine("Nouvelle affectation de Luc Cypher : "+((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
             Console.ReadKey();
         }
     }

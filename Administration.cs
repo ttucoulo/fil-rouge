@@ -450,10 +450,40 @@ namespace FilRouge
             string nom = Console.ReadLine();
             Console.WriteLine("Veuillez saisir le type de besoin.");
             string typeBesoin = Console.ReadLine();
+            Console.WriteLine("Maintenance ?\nTappez 1. Oui\nTappez 2. Non.");
+            int numerobis = int.Parse(Console.ReadLine());
+            bool maintenance = false;
+            do
+            {
+                switch (numerobis)
+                {
+                    case 1:
+                        maintenance = true;
+                        break;
+                    case 2:
+                        maintenance = false;
+                        break;
+                    default:
+                        break;
+                }
+            } while (numerobis != 1 && numerobis != 2);
             Console.WriteLine("Veuillez saisir un type de Boutique parmi les trois cas suivants :\nSouvenir.\nBarbeAPapa.\nNourriture.");
             string typeBoutique_string = Console.ReadLine();
             TypeBoutique typeBoutique = CastToTypeBoutique(typeBoutique_string);
-            this.attractions.Add(new Boutique(besoinSpecifique, id,nombreMinimumMonstre,nom,typeBesoin,typeBoutique));
+            if (maintenance)
+            {
+                Console.WriteLine("Veuillez saisir la durée de la maintenance.\nD'abord,combien d'heures ?");
+                int heures = int.Parse(Console.ReadLine());
+                Console.WriteLine("Minutes ?");
+                int minutes = int.Parse(Console.ReadLine());
+                Console.WriteLine("Nature de la maintenance ?");
+                string natureM = Console.ReadLine();
+                this.attractions.Add(new Boutique(besoinSpecifique, new TimeSpan(heures, minutes, 0),new List<Monstre>(),id,maintenance,natureM,nombreMinimumMonstre,nom,false,typeBesoin,typeBoutique));
+            }
+            else
+            {
+                this.attractions.Add(new Boutique(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin, typeBoutique));
+            }
             this.CheckMonstre(id);
         }
         public void AjouterDarkRideManu()
@@ -822,7 +852,8 @@ namespace FilRouge
                         this.AfficherSelonCategorie(console);
                         break;
                     case 2:
-
+                        this.AttractionEnMaintenance(console);
+                        Console.ReadKey();
                         break;
                     default:
                         Program.MessageErreur();
@@ -976,20 +1007,20 @@ namespace FilRouge
         }
         public void AfficherParPersonnel(Personnel personnel, bool console, StreamWriter fichEcr)
         {
-             if (personnel is Sorcier && console) Console.WriteLine(personnel.Prenom+" " + personnel.Nom);
-             else if (personnel is Sorcier && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Demon && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Demon && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Vampire && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Vampire && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is LoupGarou && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is LoupGarou && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Fantome && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Fantome && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Zombie && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if (personnel is Zombie && !console) fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else if(personnel is Monstre && console) Console.WriteLine(personnel.Prenom + " " + personnel.Nom);
-             else fichEcr.WriteLine(personnel.Prenom + " " + personnel.Nom);
+             if (personnel is Sorcier && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is Sorcier && !console) fichEcr.WriteLine(personnel.ToString());
+             else if (personnel is Demon && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is Demon && !console) fichEcr.WriteLine(personnel.ToString());
+             else if (personnel is Vampire && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is Vampire && !console) fichEcr.WriteLine(personnel.ToString());
+             else if (personnel is LoupGarou && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is LoupGarou && !console) fichEcr.WriteLine(personnel.ToString());
+             else if (personnel is Fantome && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is Fantome && !console) fichEcr.WriteLine(personnel.ToString());
+             else if (personnel is Zombie && console) Console.WriteLine(personnel.ToString());
+             else if (personnel is Zombie && !console) fichEcr.WriteLine(personnel.ToString());
+             else if(personnel is Monstre && console) Console.WriteLine(personnel.ToString());
+             else fichEcr.WriteLine(personnel.ToString());
         }
         public void Tri_attractions ()//tri par ordre d ID croissant le liste des attractions
         {

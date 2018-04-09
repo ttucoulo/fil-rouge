@@ -21,6 +21,12 @@ namespace FilRouge
 
         }
 
+        public override string ToString()
+        {
+            return (base.ToString() +
+                "force : "+this.force);
+        }
+
         public int Force
         {
             get { return this.force; }
