@@ -942,9 +942,9 @@ namespace FilRouge
         {
             if(this.attractions!= null)
             {
-                for (int i = 0; i < this.attractions.Count; i++)
+                for (int j = 0; j < this.attractions.Count; j++)
                 {
-                    for (int j = 0; j < this.attractions.Count - 1; j++)
+                    for (int i = 0; i < this.attractions.Count - 1; i++)
                     {
                         if (this.attractions[i].Id > this.attractions[i + 1].Id)
                         {
@@ -958,6 +958,36 @@ namespace FilRouge
             else
             {
                 Console.WriteLine("la liste des attractions est vide, le chargement des données a t il été bien fait au préalable ?");
+            }
+        }
+        public void Tri_monstres ()//tri forces
+        {
+            if(this.toutLePersonnel != null)
+            {
+                for(int j=0;j<this.toutLePersonnel.Count;j++)
+                {
+                    int k = 0;
+                    int i = 1;
+                    if (this.toutLePersonnel[k] is Demon && k < this.toutLePersonnel.Count && i < this.toutLePersonnel.Count)
+                    {
+                        if (this.toutLePersonnel[i] is Demon && i != k)
+                        {
+                            if (((Demon)this.toutLePersonnel[k]).Force > ((Demon)this.toutLePersonnel[i]).Force)
+                            {
+                                Demon temp = (Demon)this.toutLePersonnel[k];
+                                this.toutLePersonnel[k] = (Demon)this.toutLePersonnel[i];
+                                this.toutLePersonnel[i] = temp;
+                            }
+                        }
+                        i++;
+                    }
+                    k++;
+                }
+                
+            }
+            else
+            {
+                Console.WriteLine("la liste du personnel est vide");
             }
         }
         #endregion
