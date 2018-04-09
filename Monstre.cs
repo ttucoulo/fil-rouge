@@ -26,7 +26,7 @@ namespace FilRouge
         }
         public int Cagnotte
         {
-            get { return this.Cagnotte; }
+            get { return this.cagnotte; }
             set { this.cagnotte = value; }
         }
     }
