@@ -93,6 +93,24 @@ namespace FilRouge
                 }
             } while (numero!=1 && numero !=2);
         }
+        public void FaireEvoluer()
+        {
+            Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
+            Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
+            int reponse = int.Parse(Console.ReadLine());
+            switch(reponse)
+            {
+                case 1:
+                    Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
+
+
+                        break;
+                case 2:
+
+                    break;
+            }
+
+        }
         public void ChangeFonction(Personnel personnel, string new_fonction)
         {
             personnel.Fonction = new_fonction;
@@ -167,31 +185,31 @@ namespace FilRouge
         }
         public void AddDemon( string [] tab)
         {
-            Demon new_demon = new Demon(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToInt(tab[8]));
+            Demon new_demon = new Demon(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]), CastToInt(tab[8]));
             this.toutLePersonnel.Add(new_demon);
             CheckAttraction(new_demon);
         }
         public void AddFantome(string [] tab)
         {
-            Fantome new_fantome = new Fantome(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]));
+            Fantome new_fantome = new Fantome(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]));
             this.toutLePersonnel.Add(new_fantome);
             CheckAttraction(new_fantome);
         }
         public void AddLoupGarou(string [] tab)
         {
-            LoupGarou new_loupGarou = new LoupGarou(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), Convert.ToDouble(tab[8]));
+            LoupGarou new_loupGarou = new LoupGarou(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]), Convert.ToDouble(tab[8]));
             this.toutLePersonnel.Add(new_loupGarou);
             CheckAttraction(new_loupGarou);
         }
         public void AddVampire(string [] tab)
         {
-            Vampire new_vampire = new Vampire(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), (float)Convert.ToDouble(tab[8]));
+            Vampire new_vampire = new Vampire(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]), (float)Convert.ToDouble(tab[8]));
             this.toutLePersonnel.Add(new_vampire);
             CheckAttraction(new_vampire);
         }
         public void AddZombie(string [] tab)
         {
-            Zombie new_zombie = new Zombie(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[6]), CastToInt(tab[7]), CastToCouleurZ(tab[8]), CastToInt(tab[9]));
+            Zombie new_zombie = new Zombie(CastToInt(tab[1]), tab[2], tab[3], CastTypeSexe(tab[4]), Fonction_Personnel(tab[5]), CastToInt(tab[7]), CastToInt(tab[6]), CastToCouleurZ(tab[8]), CastToInt(tab[9]));
             this.toutLePersonnel.Add(new_zombie);
             CheckAttraction(new_zombie);
         }
@@ -995,7 +1013,7 @@ namespace FilRouge
                 Console.WriteLine("la liste des attractions est vide, le chargement des données a t il été bien fait au préalable ?");
             }
         }
-        public void Tri_monstres ()//tri forces
+        public void Tri_Demons ()//tri forces
         {
             if(this.toutLePersonnel != null)
             {
@@ -1040,16 +1058,63 @@ namespace FilRouge
                 Console.WriteLine("la liste du personnel est vide");
             }
         }
-        public int ReturnIndexList(string prenom, string nom)
+
+        //public int ReturnIndexList(string prenom, string nom)
+        //{
+          //  for (int i=0;i< this.toutLePersonnel.Count(); i++)
+          //  {
+            //    if(this.toutLePersonnel[i].Prenom==prenom && this.toutLePersonnel[i].Nom == nom)
+             //   {
+              //      return i;
+               // }
+            //}
+            //return 0;
+        //}
+
+        public void Tri_Monstres()//tri cagnottes
         {
-            for (int i=0;i< this.toutLePersonnel.Count(); i++)
+            if (this.toutLePersonnel != null)
             {
-                if(this.toutLePersonnel[i].Prenom==prenom && this.toutLePersonnel[i].Nom == nom)
+                for (int j = 0; j < this.toutLePersonnel.Count(); j++)
                 {
-                    return i;
+                    int k = 0;
+                    do
+                    {
+                        int i = 1;
+                        if (this.toutLePersonnel[k] is Monstre && k < this.toutLePersonnel.Count() && i < this.toutLePersonnel.Count())
+                        {
+                            do
+                            {
+                                if (this.toutLePersonnel[i] is Monstre && i != k)
+                                {
+                                    if (((Monstre)this.toutLePersonnel[k]).Cagnotte < ((Monstre)this.toutLePersonnel[i]).Cagnotte)
+                                    {
+                                        Monstre temp = (Monstre)this.toutLePersonnel[i];
+                                        this.toutLePersonnel[i] = (Monstre)this.toutLePersonnel[k];
+                                        this.toutLePersonnel[k] = temp;
+                                    }
+
+                                }
+                                i++;
+                            } while (i < this.toutLePersonnel.Count());
+                        }
+                        k++;
+                    } while (k < this.toutLePersonnel.Count());
                 }
+                foreach (Personnel a in this.toutLePersonnel)
+                {
+                    if (a is Monstre)
+                    {
+                        Console.WriteLine(((Monstre)a).Cagnotte);
+                    }
+
+                }
+                Console.ReadKey();
             }
-            return 0;
+            else
+            {
+                Console.WriteLine("la liste du personnel est vide");
+            }
         }
         #endregion
 

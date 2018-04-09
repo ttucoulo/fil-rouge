@@ -48,6 +48,7 @@ namespace FilRouge
             Console.WriteLine("Tappez 4. Si vous voulez sortir plusieurs éléments suivant des critères donnés en sortie console, mais aussi dans un fichier csv.");
             Console.WriteLine("Tappez 5. Si vous voulez trier des éléments en fonctions d’un paramètre donné.");
             Console.WriteLine("Tappez 6. Si vous voulez agir sur la cagnotte des monstres.");
+            Console.WriteLine("Tappez 0. Pour quitter le menu.");
         }
         public static void Menu(Administration adm)
         {
@@ -60,19 +61,28 @@ namespace FilRouge
                 switch (numero)
                 {
                     case 1:
+                        Console.WriteLine("Nous allons remplir la base de donnée à l'aide du fichier Listing.");
                         adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
+                        Console.WriteLine("Ajout fait");
+                        Console.ReadKey();
                         break;
                     case 2:
+                        Console.WriteLine("Vous avez décidé d'ajouter un nouveau membre ou une nouvelle attraction:");
                         adm.AjouterMembres();
+                        Console.WriteLine("L'ajout a bien été effectué.");
+                        Console.ReadKey();
                         break;
                     case 3:
+                        Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
 
+                        Console.WriteLine("modification effectuée.");
                         break;
                     case 4:
                         adm.SortieSelonCritere();
                         break;
                     case 5:
-                        adm.Tri_monstres();
+                        //adm.Tri_Demons();
+                        adm.Tri_Monstres();
                         break;
                     case 6:
                         //Pour effectuer des tests et verifier que tout est bon!
@@ -169,6 +179,14 @@ namespace FilRouge
             adm.Tri_attractions();
             Console.WriteLine("Tri fait avec succès");
             Console.ReadKey();
+            Console.WriteLine("Nous allons trier la liste du personnel en commançant par les monstres par ordre croissant de cagnottes");
+            adm.Tri_Monstres();
+            Console.WriteLine("Tri fait avec succès");
+            Console.ReadKey();
+            Console.WriteLine("Nous allons maintenant trier par ordre croissant les demons par force");
+            adm.Tri_Demons();
+            Console.WriteLine("Tri fait avec succès");
+            Console.ReadKey();
             Console.WriteLine("Changeons la boutique Tout pour 1 euro du statut maintenance à ouvert.");
             adm.ChangeOuverture();
             Console.WriteLine("Ouverture de l'attraction effectuée.");
@@ -178,17 +196,17 @@ namespace FilRouge
             adm.AttractionEnMaintenance(false);   //Affichage csv
             Console.ReadKey();
             Console.WriteLine("Enlevons 50 de cagnotte au démon Luc Cypher pour le faire tomber en dessous de 50.");
-            for (int i=0; i < adm.ToutLePersonnel.Count(); i++)
-            {
-                if(adm.ToutLePersonnel[i] is Monstre)
-                {
-                    ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc","Cypher")]), -50);
-                }
-            }
-            Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
-                " qu'une affectation à 1000 correspond à une circulation dans le parc.");
-            Console.WriteLine(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
-            Console.ReadKey();
+           // for (int i=0; i < adm.ToutLePersonnel.Count(); i++)
+           // {
+            //    if(adm.ToutLePersonnel[i] is Monstre)
+             //   {
+             //       ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc","Cypher")]), -50);
+             //   }
+           // }
+            //Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
+             //   " qu'une affectation à 1000 correspond à une circulation dans le parc.");
+           // Console.WriteLine(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
+           // Console.ReadKey();
         }
     }
 }
