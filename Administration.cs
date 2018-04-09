@@ -63,7 +63,7 @@ namespace FilRouge
                         case "rollercoaster":
                             this.AddRollerCoaster(tab);
                             break;
-                        case "spectacle":
+                        case "spectacles":
                             this.AddSpectacle(tab);
                             break;
                     }
