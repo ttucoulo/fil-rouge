@@ -72,7 +72,7 @@ namespace FilRouge
                         adm.SortieSelonCritere();
                         break;
                     case 5:
-
+                        adm.Tri_monstres();
                         break;
                     case 6:
                         //Pour effectuer des tests et verifier que tout est bon!
