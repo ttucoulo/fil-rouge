@@ -63,7 +63,7 @@ namespace FilRouge
                         case "rollercoaster":
                             this.AddRollerCoaster(tab);
                             break;
-                        case "spectacle":
+                        case "spectacles":
                             this.AddSpectacle(tab);
                             break;
                     }
@@ -124,6 +124,33 @@ namespace FilRouge
                 }
             } while (sortie != 1 && sortie != 2);
         } 
+        public void ChangeOuverture()
+        {
+            for (int i = 0; i < this.attractions.Count(); i++)
+            {
+                if (this.attractions[i].Nom == "Tout pour 1 euro")
+                {
+                    this.attractions[i].Ouvert = true;
+                    this.attractions[i].Maintenance = false;
+                    this.attractions[i].DureeMaintenance = new TimeSpan(0, 0, 0);
+                    this.attractions[i].NatureMaintenance = "";
+                }
+            }
+        }
+        public void AttractionEnMaintenance(bool console)
+        {
+            string nomFich = "C:/temp/writeMaintenance.csv";
+            StreamWriter fichEcr = new StreamWriter(nomFich, true);
+            for (int i = 0; i < this.attractions.Count(); i++)
+            {
+                if (this.attractions[i].Maintenance)
+                {
+                    if (console) Console.WriteLine(this.attractions[i].Nom);
+                    else fichEcr.WriteLine(this.attractions[i].Nom);
+                }
+            }
+            fichEcr.Close();
+        }
         #endregion
 
         #region ADD_MONSTRE/ATTRACTION FROM CSV

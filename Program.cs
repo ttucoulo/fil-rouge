@@ -140,6 +140,7 @@ namespace FilRouge
                 }
             }
             Console.WriteLine("Changement de fonction effectué");
+            Console.ReadKey();
             Console.WriteLine("Changeons l'affectation du demon Aurelien Zahner");
             for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
             {
@@ -169,17 +170,12 @@ namespace FilRouge
             Console.WriteLine("Tri fait avec succès");
             Console.ReadKey();
             Console.WriteLine("Changeons la boutique Tout pour 1 euro du statut maintenance à ouvert.");
-            for (int i = 0; i < adm.Attractions.Count(); i++)
-            {
-                if(adm.Attractions[i].Nom=="Tout pour 1 euro")
-                {
-                    adm.Attractions[i].Ouvert = true;
-                    adm.Attractions[i].Maintenance = false;
-                    adm.Attractions[i].DureeMaintenance = new TimeSpan(0, 0, 0);
-                    adm.Attractions[i].NatureMaintenance = "";
-                }
-            }
+            //adm.ChangeOuverture();
             Console.WriteLine("Ouverture de l'attraction effectuée.");
+            Console.ReadKey();
+            Console.WriteLine("Sortons toutes les atractions en maintenance.");
+            adm.AttractionEnMaintenance(true);    //Affichage console
+            adm.AttractionEnMaintenance(false);   //Affichage csv
             Console.ReadKey();
         }
     }
