@@ -48,6 +48,7 @@ namespace FilRouge
             Console.WriteLine("Tappez 4. Si vous voulez sortir plusieurs éléments suivant des critères donnés en sortie console, mais aussi dans un fichier csv.");
             Console.WriteLine("Tappez 5. Si vous voulez trier des éléments en fonctions d’un paramètre donné.");
             Console.WriteLine("Tappez 6. Si vous voulez agir sur la cagnotte des monstres.");
+            Console.WriteLine("Tappez 0. Pour quitter le menu.");
         }
         public static void Menu(Administration adm)
         {
@@ -60,19 +61,28 @@ namespace FilRouge
                 switch (numero)
                 {
                     case 1:
+                        Console.WriteLine("Nous allons remplir la base de donnée à l'aide du fichier Listing.");
                         adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
+                        Console.WriteLine("Ajout fait");
+                        Console.ReadKey();
                         break;
                     case 2:
+                        Console.WriteLine("Vous avez décidé d'ajouter un nouveau membre ou une nouvelle attraction:");
                         adm.AjouterMembres();
+                        Console.WriteLine("L'ajout a bien été effectué.");
+                        Console.ReadKey();
                         break;
                     case 3:
+                        Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
 
+                        Console.WriteLine("modification effectuée.");
                         break;
                     case 4:
                         adm.SortieSelonCritere();
                         break;
                     case 5:
-                        adm.Tri_monstres();
+                        //adm.Tri_Demons();
+                        adm.Tri_Monstres();
                         break;
                     case 6:
                         //Pour effectuer des tests et verifier que tout est bon!
@@ -167,6 +177,14 @@ namespace FilRouge
             Console.ReadKey();
             Console.WriteLine("Nous allons trier la liste des attractions par ordre croissant d'identifiants");
             adm.Tri_attractions();
+            Console.WriteLine("Tri fait avec succès");
+            Console.ReadKey();
+            Console.WriteLine("Nous allons trier la liste du personnel en commançant par les monstres par ordre croissant de cagnottes");
+            adm.Tri_Monstres();
+            Console.WriteLine("Tri fait avec succès");
+            Console.ReadKey();
+            Console.WriteLine("Nous allons maintenant trier par ordre croissant les demons par force");
+            adm.Tri_Demons();
             Console.WriteLine("Tri fait avec succès");
             Console.ReadKey();
             Console.WriteLine("Changeons la boutique Tout pour 1 euro du statut maintenance à ouvert.");
