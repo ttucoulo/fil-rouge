@@ -188,7 +188,7 @@ namespace FilRouge
             Console.WriteLine("Tri fait avec succès");
             Console.ReadKey();
             Console.WriteLine("Changeons la boutique Tout pour 1 euro du statut maintenance à ouvert.");
-            //adm.ChangeOuverture();
+            adm.ChangeOuverture();
             Console.WriteLine("Ouverture de l'attraction effectuée.");
             Console.ReadKey();
             Console.WriteLine("Sortons toutes les atractions en maintenance.");
