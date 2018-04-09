@@ -600,9 +600,17 @@ namespace FilRouge
 
         public int CastToInt(string chaine)
         {
-            if (chaine != "" && chaine!="neant" && chaine!="parc")
+            if (chaine != "")
             {
-                return int.Parse(chaine);
+                if (chaine == "neant")
+                {
+                    return -1;
+                }
+                else if (chaine == "parc")
+                {
+                    return 1000;                      //Affectation à 1000 correspond à un monstre circulant dans le parc
+                }
+                else return int.Parse(chaine);
             }
             else return -1;
         }
@@ -1031,6 +1039,17 @@ namespace FilRouge
             {
                 Console.WriteLine("la liste du personnel est vide");
             }
+        }
+        public int ReturnIndexList(string prenom, string nom)
+        {
+            for (int i=0;i< this.toutLePersonnel.Count(); i++)
+            {
+                if(this.toutLePersonnel[i].Prenom==prenom && this.toutLePersonnel[i].Nom == nom)
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
         #endregion
 

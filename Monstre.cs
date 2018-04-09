@@ -19,6 +19,11 @@ namespace FilRouge
             this.cagnotte = cagnotte1;
         }
 
+        public virtual void ModifierCagnotte(Monstre monstre, int cagnotte)
+        {
+
+        }
+
         public int Affectation
         {
             get { return this.affectation; }
@@ -26,7 +31,7 @@ namespace FilRouge
         }
         public int Cagnotte
         {
-            get { return this.Cagnotte; }
+            get { return this.cagnotte; }
             set { this.cagnotte = value; }
         }
     }

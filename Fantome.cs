@@ -13,5 +13,9 @@ namespace FilRouge
         {
 
         }
+        public override void ModifierCagnotte(Monstre monstre, int cagnotte)
+        {
+
+        }
     }
 }

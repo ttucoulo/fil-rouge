@@ -15,5 +15,22 @@ namespace FilRouge
         {
             this.indiceLuminosite = indiceLumi;
         }
+
+        public override void ModifierCagnotte(Monstre monstre,int cagnotte)
+        {
+            if(this.Prenom.ToLower()=="rose" && this.Nom.ToLower()=="von bloodt")
+            {
+                monstre.Cagnotte += cagnotte;
+                if (monstre.Cagnotte < 50)
+                {
+                    monstre.Affectation = 684;
+                }
+                else if (monstre.Cagnotte > 500)
+                {
+                    monstre.Affectation = 1000;
+                }
+            }
+        }
+
     }
 }

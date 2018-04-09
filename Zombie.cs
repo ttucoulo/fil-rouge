@@ -17,5 +17,11 @@ namespace FilRouge
             this.teint = teint;
             this.degreDecomposition = degreDecomp;
         }
+
+        public override void ModifierCagnotte(Monstre monstre, int cagnotte)
+        {
+
+        }
+
     }
 }

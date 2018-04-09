@@ -15,6 +15,12 @@ namespace FilRouge
         {
             this.force = force1;
         }
+
+        public override void ModifierCagnotte(Monstre monstre, int cagnotte)
+        {
+
+        }
+
         public int Force
         {
             get { return this.force; }

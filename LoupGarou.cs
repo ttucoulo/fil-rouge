@@ -15,5 +15,9 @@ namespace FilRouge
         {
             this.indiceCruaute = indicecruaute;
         }
+        public override void ModifierCagnotte(Monstre monstre, int cagnotte)
+        {
+
+        }
     }
 }
