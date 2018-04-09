@@ -1058,19 +1058,17 @@ namespace FilRouge
                 Console.WriteLine("la liste du personnel est vide");
             }
         }
-
-        //public int ReturnIndexList(string prenom, string nom)
-        //{
-          //  for (int i=0;i< this.toutLePersonnel.Count(); i++)
-          //  {
-            //    if(this.toutLePersonnel[i].Prenom==prenom && this.toutLePersonnel[i].Nom == nom)
-             //   {
-              //      return i;
-               // }
-            //}
-            //return 0;
-        //}
-
+        public int ReturnIndexList(string prenom, string nom)
+        {
+            for (int i=0;i< this.toutLePersonnel.Count(); i++)
+            {
+                if(this.toutLePersonnel[i].Prenom==prenom && this.toutLePersonnel[i].Nom == nom)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
         public void Tri_Monstres()//tri cagnottes
         {
             if (this.toutLePersonnel != null)

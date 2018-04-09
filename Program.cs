@@ -196,17 +196,17 @@ namespace FilRouge
             adm.AttractionEnMaintenance(false);   //Affichage csv
             Console.ReadKey();
             Console.WriteLine("Enlevons 50 de cagnotte au démon Luc Cypher pour le faire tomber en dessous de 50.");
-           // for (int i=0; i < adm.ToutLePersonnel.Count(); i++)
-           // {
-            //    if(adm.ToutLePersonnel[i] is Monstre)
-             //   {
-             //       ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc","Cypher")]), -50);
-             //   }
-           // }
-            //Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
-             //   " qu'une affectation à 1000 correspond à une circulation dans le parc.");
-           // Console.WriteLine(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
-           // Console.ReadKey();
+            for (int i=0; i < adm.ToutLePersonnel.Count(); i++)
+            {
+                if(adm.ToutLePersonnel[i] is Monstre)
+                {
+                    ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc","Cypher")]), -50);
+                }
+            }
+            Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
+              " qu'une affectation à 1000 correspond à une circulation dans le parc.");
+            Console.WriteLine(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
+            Console.ReadKey();
         }
     }
 }
