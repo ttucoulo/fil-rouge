@@ -17,5 +17,10 @@ namespace FilRouge
             this.tatouage = tatouage;
             this.pouvoirs = pouvoirs;
         }
+
+        public override string ToString()
+        {
+            return base.ToString()+ " tatouage : "+this.tatouage;
+        }
     }
 }

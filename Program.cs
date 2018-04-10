@@ -300,6 +300,7 @@ namespace FilRouge
             Boutique new_boutique = new Boutique(false, new TimeSpan(24, 0, 0), liste1, 625, true, "reperation", 1, "Tout pour 1 euro", false, "monstre", TypeBoutique.souvenir);
             adm.Attractions.Add(new_boutique);
             adm.CheckMonstre(new_boutique.Id);
+            Console.WriteLine("Ajouts effectués");
             Console.ReadKey();
             Console.WriteLine("On va maintenant faire evoluer les membres du personnel");
             Console.WriteLine("La directrice Communication va passer Directrice recrutement");

@@ -23,6 +23,11 @@ namespace FilRouge
             this.sexe = sexe;
         }
 
+        public override string ToString()
+        {
+            return "Prenom: " + this.Prenom + " Nom : " + this.Nom + " Fonction : " + this.Fonction + " matricule : " + this.Matricule;
+        }
+
         public string Nom
         {
             get { return this.nom; }

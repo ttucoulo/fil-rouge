@@ -24,7 +24,7 @@ namespace FilRouge
         public override string ToString()
         {
             return (base.ToString() +
-                "force : "+this.force);
+                " force : "+this.force);
         }
         public int CompareTo(Demon demon)
         {
