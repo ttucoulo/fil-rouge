@@ -93,24 +93,7 @@ namespace FilRouge
                 }
             } while (numero!=1 && numero !=2);
         }
-        public void FaireEvoluer()
-        {
-            Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
-            Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
-            int reponse = int.Parse(Console.ReadLine());
-            switch(reponse)
-            {
-                case 1:
-                    Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
-
-
-                        break;
-                case 2:
-
-                    break;
-            }
-
-        }
+        
         public void ChangeFonction(Personnel personnel, string new_fonction)
         {
             personnel.Fonction = new_fonction;
