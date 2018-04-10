@@ -78,46 +78,96 @@ namespace FilRouge
                             Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
                             Console.WriteLine("Tapez 3. Si vous souhaitez changer la maintenance d'une attraction.");
                             int reponse = int.Parse(Console.ReadLine());
-                            switch (reponse)
+                        Console.Clear();
+                        switch (reponse)
                             {
                                 case 1:
                                 Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
                                 Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
                                 int mat = int.Parse(Console.ReadLine());
+                                Console.Clear();
                                 Console.WriteLine("Quelle fonction voulez vous affecter?");
                                 string rep = (string)(Console.ReadLine());
-                                for (int i=0; i<adm.ToutLePersonnel.Count();i++)
+                                Console.Clear();
+                                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
                                 {
-                                    if(adm.ToutLePersonnel[i].Matricule==mat)
+                                    if (adm.ToutLePersonnel[i].Matricule == mat)
                                     {
                                         adm.ChangeFonction(adm.ToutLePersonnel[i], rep);
                                         Console.WriteLine("Changement fait");
                                     }
                                 }
+                                int presence = 0;
+                                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                                {
+                                    if (adm.ToutLePersonnel[i].Matricule == mat)
+                                    {
+                                        presence++;
+                                    }
+                                }
+                                if(presence == 0)
+                                {
+                                    Console.WriteLine("Le matricule n'est pas valide");
+                                }
                                 Console.ReadKey();
                                 break;
                                 case 2:
                                     Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
-                                Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
+                                Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer l'affectation");
                                 int mat2 = int.Parse(Console.ReadLine());
-                                Console.WriteLine("Quelle fonction voulez vous affecter?");
+                                Console.Clear();
+                                Console.WriteLine("Quelle affection voulez vous assigner?");
                                 int rep2 = int.Parse(Console.ReadLine());
+                                Console.Clear();
                                 for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
                                 {
                                     if (adm.ToutLePersonnel[i] is Monstre && adm.ToutLePersonnel[i].Matricule == mat2)
                                     {
-                                        adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[i], rep2);
-                                        Console.WriteLine("Changement fait");
+                                        for(int j=0;j<adm.Attractions.Count();j++)
+                                        {
+                                            if (adm.Attractions[j].Id == rep2)
+                                            {
+                                                adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[i], rep2);
+                                                Console.WriteLine("Changement fait");
+                                            }
+                                        }
                                     }
+                                }
+                                int bon_matricule = 0;
+                                for (int j = 0; j < adm.Attractions.Count(); j++)
+                                {
+                                    if (adm.Attractions[j].Id == rep2)
+                                    {
+                                        bon_matricule++;
+                                    }
+                                }
+                                if(bon_matricule ==0)
+                                {
+                                    Console.WriteLine("Le matricule de l'attraction n'est pas valide");
+                                    Console.ReadKey();
+                                }
+                                int presence2 = 0;
+                                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                                {
+                                    if (adm.ToutLePersonnel[i] is Monstre && adm.ToutLePersonnel[i].Matricule == mat2)
+                                    {
+                                        presence2++;
+                                    }
+                                }
+                                if (presence2 == 0)
+                                {
+                                    Console.WriteLine("Le matricule n'est pas valide");
                                 }
                                 Console.ReadKey();
                                 break;
                                 case 3:
-                                    Console.WriteLine("Vous avez décidé de modifier la maiontenance d'une attraction");
-                                Console.WriteLine("Veuillez entrer l'identifiant de l'ttraction dont vous voulez modifer la maintenance");
+                                    Console.WriteLine("Vous avez décidé de modifier la maintenance d'une attraction");
+                                Console.WriteLine("Veuillez entrer l'identifiant de l'attraction dont vous voulez modifer la maintenance");
                                 int ID = int.Parse(Console.ReadLine());
+                                Console.Clear();
                                 Console.WriteLine("Quelle est la nature de la maintenance?");
                                 string maintenance = (string)(Console.ReadLine());
+                                Console.Clear();
                                 for (int i=0;i<adm.Attractions.Count();i++)
                                 {
                                     if(adm.Attractions[i].Id == ID)
@@ -126,10 +176,23 @@ namespace FilRouge
                                         Console.WriteLine("changement effectué");
                                     }
                                 }
+                                int presence3 = 0;
+                                for (int i = 0; i < adm.Attractions.Count(); i++)
+                                {
+                                    if (adm.Attractions[i].Id == ID)
+                                    {
+                                        presence3++;
+                                    }
+                                }
+                                if (presence3 == 0)
+                                {
+                                    Console.WriteLine("Le matricule n'est pas valide");
+                                }
                                 Console.ReadKey();
                                 break;
                             }
                         Console.WriteLine("modification effectuée.");
+                        Console.ReadKey();
                         break;
                     case 4:
                         adm.SortieSelonCritere();
