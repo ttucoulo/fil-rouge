@@ -1079,16 +1079,30 @@ namespace FilRouge
                 Console.WriteLine("la liste du personnel est vide");
             }
         }
-        public int ReturnIndexList(int matricule)
+        public int ReturnIndexList(int matricule, bool PersonnelOuAttraction)
         {
-            for (int i=0;i< this.toutLePersonnel.Count(); i++)
+            if (PersonnelOuAttraction)
             {
-                if(this.toutLePersonnel[i] is Monstre && this.toutLePersonnel[i].Matricule==matricule)
+                for (int i = 0; i < this.toutLePersonnel.Count(); i++)
                 {
-                    return i;
+                    if (this.toutLePersonnel[i] is Monstre && this.toutLePersonnel[i].Matricule == matricule)
+                    {
+                        return i;
+                    }
                 }
+                return 100;
             }
-            return 100;
+            else
+            {
+                for (int i = 0; i < this.attractions.Count(); i++)
+                {
+                    if ( this.attractions[i].Id == matricule)
+                    {
+                        return i;
+                    }
+                }
+                return 100;
+            }
         }
         public void Tri_Monstres()//tri cagnottes
         {
