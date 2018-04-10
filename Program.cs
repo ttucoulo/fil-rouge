@@ -203,8 +203,7 @@ namespace FilRouge
                         adm.Tri_Monstres();
                         break;
                     case 6:
-                        
-                        Console.ReadKey();
+                        Cagnotte(adm);
                         break;
                     case 0:
                         //Pour quitter le menu
@@ -218,6 +217,28 @@ namespace FilRouge
         public static void MessageErreur()
         {
             Console.WriteLine("Veuillez saisir une action existante svp.\nVeuillez saisir une touche pour revenir au menu.");
+            Console.ReadKey();
+        }
+        public static void Cagnotte(Administration adm)
+        {
+            Console.WriteLine("Veuillez saisir le matricule du monstre auquel vous voulez augmenter ou décrementer la cagnotte");
+            int matricule = int.Parse(Console.ReadLine());
+            int index_monstre = adm.ReturnIndexList(matricule);
+            if (index_monstre == 100) Console.WriteLine("Matricule non existant.");
+            else
+            {
+                Console.WriteLine("De combien voulez-vous augmenter ou décrementer ? (décrementer -- nombre negatif).");
+                int nombreCagnotte = int.Parse(Console.ReadLine());
+                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                {
+                    if (adm.ToutLePersonnel[i] is Monstre)
+                    {
+                        ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[index_monstre]), nombreCagnotte);
+                    }
+                }
+                Console.WriteLine("Modification de cagnotte effectuée");
+            }
+
             Console.ReadKey();
         }
         public static void Demo(Administration adm)
@@ -312,17 +333,17 @@ namespace FilRouge
             adm.AttractionEnMaintenance(true);    //Affichage console
             adm.AttractionEnMaintenance(false);   //Affichage csv
             Console.ReadKey();
-            Console.WriteLine("Enlevons 50 de cagnotte au démon Luc Cypher pour le faire tomber en dessous de 50.");
+            Console.WriteLine("Enlevons 50 de cagnotte au démon Luc Cypher de matricule 66754pour le faire tomber en dessous de 50.");
             for (int i=0; i < adm.ToutLePersonnel.Count(); i++)
             {
                 if(adm.ToutLePersonnel[i] is Monstre)
                 {
-                    ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc","Cypher")]), -50);
+                    ((Monstre)adm.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList(66754)]), -50);
                 }
             }
             Console.WriteLine("On va maintenant verifier si son affectation a bien été modifiée car sa cagnotte est descendu en dessous de 50. Je rappelle" +
               " qu'une affectation à 1000 correspond à une circulation dans le parc et qu'une affectation à 684 correspond à un stand à barbe a papa.");
-            Console.WriteLine("Nouvelle affectation de Luc Cypher : "+((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList("Luc", "Cypher")]).Affectation);
+            Console.WriteLine("Nouvelle affectation de Luc Cypher : "+((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList(66754)]).Affectation);
             Console.ReadKey();
         }
     }
