@@ -74,7 +74,44 @@ namespace FilRouge
                         break;
                     case 3:
                         Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
+                        
+                            Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
+                            Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
+                            Console.WriteLine("Tapez 3. Si vous souhaitez changer la maintenance d'une attraction.");
+                            int reponse = int.Parse(Console.ReadLine());
+                            switch (reponse)
+                            {
+                                case 1:
+                                Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
+                                Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
+                                int mat = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Quelle fonction voulez vous affecter?");
+                                string rep = (string)(Console.ReadLine());
+                                for (int i=0; i<adm.ToutLePersonnel.Count();i++)
+                                {
+                                    if(adm.ToutLePersonnel[i].Matricule==mat)
+                                    {
+                                        adm.ChangeFonction(adm.ToutLePersonnel[i], rep);
+                                        Console.WriteLine("Changement fait");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("le matricule n'est pas valide");
+                                    }
+                                }
+                        break;
+                                case 2:
+                                    Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
 
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Vous avez décidé de modifier la maiontenance d'une attraction");
+
+                                    break;
+
+                            }
+
+                        
                         Console.WriteLine("modification effectuée.");
                         break;
                     case 4:
