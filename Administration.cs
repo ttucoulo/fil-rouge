@@ -138,6 +138,13 @@ namespace FilRouge
                 }
             }
         }
+        public void ChangeOuverture2(Attraction a,string maintenance)
+        {
+                    a.Ouvert = true;
+                    a.Maintenance = false;
+                    a.DureeMaintenance = new TimeSpan(0, 0, 0);
+                    a.NatureMaintenance = maintenance;
+        }
         public void AttractionEnMaintenance(bool console)
         {
             string nomFich = "C:/temp/writeMaintenance.csv";
