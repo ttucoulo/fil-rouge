@@ -140,7 +140,7 @@ namespace FilRouge
                         liste_monstre.Sort();
                         foreach (Monstre a in liste_monstre)
                         {
-                            a.ToString();
+                            Console.WriteLine(a.ToString());
                         }
                         break;
                     case 2:
@@ -153,7 +153,7 @@ namespace FilRouge
                         liste_demon.Sort();
                         foreach (Demon d in liste_demon)
                         {
-                            d.ToString();
+                            Console.WriteLine(d.ToString());
                         }
                         break;
                     case 3:
@@ -166,7 +166,7 @@ namespace FilRouge
                         liste_loup_garou.Sort();
                         foreach (LoupGarou lp in liste_loup_garou)
                         {
-                            lp.ToString();
+                            Console.WriteLine(lp.ToString());
                         }
                         break;
                     case 4:
@@ -179,7 +179,7 @@ namespace FilRouge
                         liste_vampire.Sort();
                         foreach (Vampire v in liste_vampire)
                         {
-                            v.ToString();
+                            Console.WriteLine(v.ToString());
                         }
                         break;
                     default:
