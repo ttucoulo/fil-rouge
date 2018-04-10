@@ -93,24 +93,42 @@ namespace FilRouge
                                         adm.ChangeFonction(adm.ToutLePersonnel[i], rep);
                                         Console.WriteLine("Changement fait");
                                     }
-                                    else
-                                    {
-                                        Console.WriteLine("le matricule n'est pas valide");
-                                    }
                                 }
-                        break;
+                                Console.ReadKey();
+                                break;
                                 case 2:
                                     Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
-
-                                    break;
+                                Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
+                                int mat2 = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Quelle fonction voulez vous affecter?");
+                                int rep2 = int.Parse(Console.ReadLine());
+                                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                                {
+                                    if (adm.ToutLePersonnel[i] is Monstre && adm.ToutLePersonnel[i].Matricule == mat2)
+                                    {
+                                        adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[i], rep2);
+                                        Console.WriteLine("Changement fait");
+                                    }
+                                }
+                                Console.ReadKey();
+                                break;
                                 case 3:
                                     Console.WriteLine("Vous avez décidé de modifier la maiontenance d'une attraction");
-
-                                    break;
-
+                                Console.WriteLine("Veuillez entrer l'identifiant de l'ttraction dont vous voulez modifer la maintenance");
+                                int ID = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Quelle est la nature de la maintenance?");
+                                string maintenance = (string)(Console.ReadLine());
+                                for (int i=0;i<adm.Attractions.Count();i++)
+                                {
+                                    if(adm.Attractions[i].Id == ID)
+                                    {
+                                        adm.ChangeOuverture2(adm.Attractions[i], maintenance);
+                                        Console.WriteLine("changement effectué");
+                                    }
+                                }
+                                Console.ReadKey();
+                                break;
                             }
-
-                        
                         Console.WriteLine("modification effectuée.");
                         break;
                     case 4:
