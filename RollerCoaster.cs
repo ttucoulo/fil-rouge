@@ -28,5 +28,10 @@ namespace FilRouge
             this.categorie = categ;
             this.tailleMinimum = tailleMini;
         }
+
+        public override string ToString()
+        {
+            return "RollerCoaster : "+base.ToString() + " Taille minimum : "+this.tailleMinimum+" Age minimum : "+this.ageMini +" Categorie : "+this.categorie;
+        }
     }
 }

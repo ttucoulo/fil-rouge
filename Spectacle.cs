@@ -27,5 +27,10 @@ namespace FilRouge
             this.nombrePlace = nbPlace;
             this.nomSalle = nmSalle;
         }
+
+        public override string ToString()
+        {
+            return "Spectacle  Nom de la salle : "+this.nomSalle +base.ToString()+ " nombrePlaces : "+this.nombrePlace;
+        }
     }
 }

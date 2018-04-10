@@ -146,8 +146,8 @@ namespace FilRouge
             {
                 if (this.attractions[i].Maintenance)
                 {
-                    if (console) Console.WriteLine(this.attractions[i].Nom);
-                    else fichEcr.WriteLine(this.attractions[i].Nom);
+                    if (console) Console.WriteLine(this.attractions[i].ToString());
+                    else fichEcr.WriteLine(this.attractions[i].ToString());
                 }
             }
             fichEcr.Close();

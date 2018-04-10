@@ -48,6 +48,11 @@ namespace FilRouge
             this.typeDeBesoin = typeBesoin;
         }
 
+        public override string ToString()
+        {
+            return " Nom : " + this.nom + " id : " + this.identifiant;
+        }
+
         public bool BesoinSpecifique
         {
             get { return this.besoinSpecifique; }

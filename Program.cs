@@ -37,7 +37,6 @@ namespace FilRouge
                 }
             } while (numero != 1 && numero != 2);
         }
-
         public static void AffichageActions()
         {
             Console.WriteLine("Bienvenue dans le logiciel de gestion administrative du parc Zombillenium.");

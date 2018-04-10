@@ -24,5 +24,9 @@ namespace FilRouge
             this.duree = duree;
             this.vehicule = vehicule;
         }
+        public override string ToString()
+        {
+            return "Darkride  " +base.ToString();
+        }
     }
 }

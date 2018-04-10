@@ -22,6 +22,11 @@ namespace FilRouge
             this.type = typeBout;
         }
 
+        public override string ToString()
+        {
+            return "Boutique : "+base.ToString() + "Type Boutique : "+this.type;
+        }
+
         public TypeBoutique TypeBoutique
         {
             get { return this.type; }
