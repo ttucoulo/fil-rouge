@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Monstre : Personnel
+    class Monstre : Personnel, IComparable<Monstre>
     {
         //private Attraction affectation;
         private int affectation;
@@ -27,6 +27,11 @@ namespace FilRouge
         public override string ToString()
         {
             return "Prenom: "+this.Prenom+" Nom : "+this.Nom +" Fonction : "+this.Fonction+" matricule : "+this.Matricule+"affectation : " + this.affectation + " cagnotte : " + this.cagnotte.ToString();
+        }
+
+        public int CompareTo(Monstre monstre)
+        {
+            return this.cagnotte.CompareTo(monstre.cagnotte);
         }
 
         public int Affectation

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Personnel
+    abstract class Personnel
     {
         private string fonction;
         private int matricule;

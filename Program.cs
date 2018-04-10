@@ -79,9 +79,8 @@ namespace FilRouge
                         adm.SortieSelonCritere();
                         break;
                     case 5:
-                        Console.WriteLine("Trions les cagnottes des monstres par ordre croissant");
-                        //adm.Tri_Demons();
-                        adm.Tri_Monstres();
+                        Tri(adm);
+                        Console.ReadKey();
                         break;
                     case 6:
                         Cagnotte(adm);
@@ -121,6 +120,72 @@ namespace FilRouge
             }
 
             Console.ReadKey();
+        }
+        public static void Tri(Administration adm)
+        {
+            Console.WriteLine("Trier par quel critère ?");
+            Console.WriteLine("Tappez 1. Par cagnotte\nTappez 2. Par force\nTappez 3. Par cruaute\nTappez 4. Par luminosite");
+            int numero = int.Parse(Console.ReadLine());
+            do
+            {
+                switch (numero)
+                {
+                    case 1:
+                        Console.WriteLine("Trions les cagnottes des monstres par ordre croissant");
+                        List<Monstre> liste_monstre = new List<Monstre>();
+                        for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                        {
+                            if (adm.ToutLePersonnel[i] is Monstre) liste_monstre.Add((Monstre)adm.ToutLePersonnel[i]);
+                        }
+                        liste_monstre.Sort();
+                        foreach (Monstre a in liste_monstre)
+                        {
+                            a.ToString();
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Trions les forces des Demons par ordre croissant");
+                        List<Demon> liste_demon = new List<Demon>();
+                        for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                        {
+                            if (adm.ToutLePersonnel[i] is Demon) liste_demon.Add((Demon)adm.ToutLePersonnel[i]);
+                        }
+                        liste_demon.Sort();
+                        foreach (Demon d in liste_demon)
+                        {
+                            d.ToString();
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Trions les indices de cruauté des Loup-Garous");
+                        List<LoupGarou> liste_loup_garou = new List<LoupGarou>();
+                        for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                        {
+                            if (adm.ToutLePersonnel[i] is LoupGarou) liste_loup_garou.Add((LoupGarou)adm.ToutLePersonnel[i]);
+                        }
+                        liste_loup_garou.Sort();
+                        foreach (LoupGarou lp in liste_loup_garou)
+                        {
+                            lp.ToString();
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Trions les indices de luminosité des Vampires");
+                        List<Vampire> liste_vampire = new List<Vampire>();
+                        for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                        {
+                            if (adm.ToutLePersonnel[i] is Vampire) liste_vampire.Add((Vampire)adm.ToutLePersonnel[i]);
+                        }
+                        liste_vampire.Sort();
+                        foreach (Vampire v in liste_vampire)
+                        {
+                            v.ToString();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } while (numero !=1 && numero !=2 && numero !=3 && numero !=4);
         }
         public static void Change(Administration adm)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class LoupGarou : Monstre
+    class LoupGarou : Monstre,IComparable<LoupGarou>
     {
         private double indiceCruaute;
 
@@ -23,6 +23,16 @@ namespace FilRouge
         {
             return (base.ToString() +
                 "indice cruauté : " + this.indiceCruaute);
+        }
+        public int CompareTo(LoupGarou lg)
+        {
+            return this.indiceCruaute.CompareTo(lg.indiceCruaute);
+        }
+
+        public double IndiceCruaute
+        {
+            get { return this.indiceCruaute; }
+            set { this.indiceCruaute = value; }
         }
     }
 }

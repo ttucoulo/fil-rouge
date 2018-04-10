@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Demon : Monstre
+    class Demon : Monstre,IComparable<Demon>
     {
         private int force;
 
@@ -25,6 +25,10 @@ namespace FilRouge
         {
             return (base.ToString() +
                 "force : "+this.force);
+        }
+        public int CompareTo(Demon demon)
+        {
+            return this.force.CompareTo(demon.force);
         }
 
         public int Force

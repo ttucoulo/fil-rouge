@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Vampire : Monstre
+    class Vampire : Monstre,IComparable<Vampire>
     {
         private float indiceLuminosite;
 
@@ -35,6 +35,10 @@ namespace FilRouge
         {
             return (base.ToString() +
                 "indiceLuminosité : " + this.indiceLuminosite);
+        }
+        public int CompareTo(Vampire vampire)
+        {
+            return this.indiceLuminosite.CompareTo(vampire.indiceLuminosite);
         }
 
     }

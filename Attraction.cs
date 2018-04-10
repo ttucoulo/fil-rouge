@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Attraction
+    abstract class Attraction
     {
         private bool besoinSpecifique;
         private TimeSpan dureeMaintenance;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    class Zombie : Monstre
+    class Zombie : Monstre, IComparable<Zombie>
     {
         private CouleurZ teint;
         private int degreDecomposition;
@@ -26,6 +26,10 @@ namespace FilRouge
         {
             return (base.ToString() +
                 "Degre de décomposition : " + this.degreDecomposition + " teint :"+this.teint);
+        }
+        public int CompareTo(Zombie zombie)
+        {
+            return this.degreDecomposition.CompareTo(zombie.degreDecomposition);
         }
     }
 }
