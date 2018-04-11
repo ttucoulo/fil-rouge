@@ -440,8 +440,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Monstre new_monstre = new Monstre(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
@@ -462,8 +467,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir un indice de luminosite.");
@@ -486,8 +496,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir un teint parmi les deux cas suivants :\nBleuatre.\nGrisatre.");
@@ -513,8 +528,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir un indice de cruaute.");
@@ -537,8 +557,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Fantome new_fantome = new Fantome(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
@@ -559,8 +584,13 @@ namespace FilRouge
             TypeSexe sexe = CastTypeSexe(sexe_string);
             Console.WriteLine("Veuillez saisir une fonction.");
             string fonction = Console.ReadLine();
-            Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
-            int affectation = int.Parse(Console.ReadLine());
+            int affectation;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un numero d'affectation à une attraction.");
+                affectation = int.Parse(Console.ReadLine());
+
+            } while (!this.Check_Affectation(affectation));
             Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
             int cagnotte = int.Parse(Console.ReadLine());
             Console.WriteLine("Veuillez saisir une force pour le demon.");
@@ -1491,6 +1521,21 @@ namespace FilRouge
             catch
             {
                 Console.WriteLine("Vous n'avez pas entré un nombre entier.");
+            }
+        }
+        public bool Check_Affectation(int affectation)
+        {
+            if (affectation == -1 || affectation == 1000) return true;
+            else
+            {
+                for (int i = 0; i < this.attractions.Count(); i++)
+                {
+                    if (this.attractions[i].Id == affectation)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 
