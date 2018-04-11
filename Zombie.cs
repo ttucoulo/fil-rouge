@@ -25,7 +25,7 @@ namespace FilRouge
         public override string ToString()
         {
             return (base.ToString() +
-                "Degre de décomposition : " + this.degreDecomposition + " teint :"+this.teint);
+                " Décomposition : " + this.degreDecomposition + " teint :"+this.teint);
         }
         public int CompareTo(Zombie zombie)
         {

@@ -25,7 +25,7 @@ namespace FilRouge
 
         public override string ToString()
         {
-            return "Prenom: " + this.Prenom + " Nom : " + this.Nom + " Fonction : " + this.Fonction + " matricule : " + this.Matricule;
+            return "Prenom: " + this.Prenom + " Nom : " + this.Nom + " matricule : " + this.Matricule;
         }
 
         public string Nom

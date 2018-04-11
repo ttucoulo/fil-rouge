@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilRouge
 {
-    abstract class Attraction
+    abstract class Attraction : IComparable<Attraction>
     {
         private bool besoinSpecifique;
         private TimeSpan dureeMaintenance;
@@ -48,6 +48,10 @@ namespace FilRouge
             this.typeDeBesoin = typeBesoin;
         }
 
+        public int CompareTo(Attraction attraction)
+        {
+            return this.identifiant.CompareTo(attraction.identifiant);
+        }
         public override string ToString()
         {
             return " Nom : " + this.nom + " id : " + this.identifiant;
