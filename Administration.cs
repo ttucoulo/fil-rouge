@@ -1072,73 +1072,6 @@ namespace FilRouge
              else if(personnel is Monstre && console) Console.WriteLine(personnel.ToString());
              else fichEcr.WriteLine(personnel.ToString());
         }
-        public void Tri_attractions ()//tri par ordre d ID croissant le liste des attractions
-        {
-            if(this.attractions!= null)
-            {
-                for (int j = 0; j < this.attractions.Count(); j++)
-                {
-                    for (int i = 0; i < this.attractions.Count() - 1; i++)
-                    {
-                        if (this.attractions[i].Id > this.attractions[i + 1].Id)
-                        {
-                            Attraction temp = this.attractions[i];
-                            this.attractions[i] = this.attractions[i + 1];
-                            this.attractions[i + 1] = temp;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("la liste des attractions est vide, le chargement des données a t il été bien fait au préalable ?");
-            }
-        }
-        public void Tri_Demons ()//tri forces
-        {
-            if(this.toutLePersonnel != null)
-            {
-                for(int j=0;j<this.toutLePersonnel.Count();j++)
-                {
-                    int k = 0;
-                    do
-                    {
-                        int i = 1;
-                        if (this.toutLePersonnel[k] is Demon && k < this.toutLePersonnel.Count() && i < this.toutLePersonnel.Count())
-                        {
-                            do
-                            {
-                            if (this.toutLePersonnel[i] is Demon && i != k)
-                            {
-                                if (((Demon)this.toutLePersonnel[k]).Force < ((Demon)this.toutLePersonnel[i]).Force)
-                                {
-                                    Demon temp = (Demon)this.toutLePersonnel[i];
-                                    this.toutLePersonnel[i] = (Demon)this.toutLePersonnel[k];
-                                    this.toutLePersonnel[k] = temp;
-                                }
-                                
-                            }
-                                i++;
-                            } while (i < this.toutLePersonnel.Count()); 
-                        }
-                        k++;
-                    } while (k < this.toutLePersonnel.Count());
-                }
-                foreach( Personnel a in this.toutLePersonnel)
-                {
-                    if(a is Demon)
-                    {
-                        Console.WriteLine(((Demon)a).Force);
-                    }
-                    
-                }
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("la liste du personnel est vide");
-            }
-        }
         public int ReturnIndexList(int matricule, bool PersonnelOuAttraction)
         {
             if (PersonnelOuAttraction)
@@ -1164,51 +1097,188 @@ namespace FilRouge
                 return 100;
             }
         }
-        public void Tri_Monstres()//tri cagnottes
+        public void Cagnotte()
         {
-            if (this.toutLePersonnel != null)
-            {
-                for (int j = 0; j < this.toutLePersonnel.Count(); j++)
-                {
-                    int k = 0;
-                    do
-                    {
-                        int i = 1;
-                        if (this.toutLePersonnel[k] is Monstre && k < this.toutLePersonnel.Count() && i < this.toutLePersonnel.Count())
-                        {
-                            do
-                            {
-                                if (this.toutLePersonnel[i] is Monstre && i != k)
-                                {
-                                    if (((Monstre)this.toutLePersonnel[k]).Cagnotte < ((Monstre)this.toutLePersonnel[i]).Cagnotte)
-                                    {
-                                        Monstre temp = (Monstre)this.toutLePersonnel[i];
-                                        this.toutLePersonnel[i] = (Monstre)this.toutLePersonnel[k];
-                                        this.toutLePersonnel[k] = temp;
-                                    }
-
-                                }
-                                i++;
-                            } while (i < this.toutLePersonnel.Count());
-                        }
-                        k++;
-                    } while (k < this.toutLePersonnel.Count());
-                }
-                foreach (Personnel a in this.toutLePersonnel)
-                {
-                    if (a is Monstre)
-                    {
-                        Console.WriteLine(((Monstre)a).Cagnotte);
-                    }
-
-                }
-                Console.ReadKey();
-            }
+            Console.WriteLine("Veuillez saisir le matricule du monstre auquel vous voulez augmenter ou décrementer la cagnotte");
+            int matricule = int.Parse(Console.ReadLine());
+            int index_monstre = this.ReturnIndexList(matricule, true);
+            if (index_monstre == 100) Console.WriteLine("Matricule non existant.");
             else
             {
-                Console.WriteLine("la liste du personnel est vide");
+                Console.WriteLine("De combien voulez-vous augmenter ou décrementer ? (décrementer -- nombre negatif).");
+                int nombreCagnotte = int.Parse(Console.ReadLine());
+                for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+                {
+                    if (this.ToutLePersonnel[i] is Monstre)
+                    {
+                        ((Monstre)this.ToutLePersonnel[i]).ModifierCagnotte(((Monstre)this.ToutLePersonnel[index_monstre]), nombreCagnotte);
+                    }
+                }
+                Console.WriteLine("Modification de cagnotte effectuée");
+            }
+
+            Console.ReadKey();
+        }
+        public void Tri()
+        {
+            Console.WriteLine("Trier par quel critère ?");
+            Console.WriteLine("Tappez 1. Par cagnotte\nTappez 2. Par force\nTappez 3. Par cruaute\nTappez 4. Par luminosite");
+            int numero = int.Parse(Console.ReadLine());
+            do
+            {
+                switch (numero)
+                {
+                    case 1:
+                        Console.WriteLine("Trions les cagnottes des monstres par ordre croissant");
+                        List<Monstre> liste_monstre = new List<Monstre>();
+                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+                        {
+                            if (this.ToutLePersonnel[i] is Monstre) liste_monstre.Add((Monstre)this.ToutLePersonnel[i]);
+                        }
+                        liste_monstre.Sort();
+                        foreach (Monstre a in liste_monstre)
+                        {
+                            Console.WriteLine(a.ToString());
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Trions les forces des Demons par ordre croissant");
+                        List<Demon> liste_demon = new List<Demon>();
+                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+                        {
+                            if (this.ToutLePersonnel[i] is Demon) liste_demon.Add((Demon)this.ToutLePersonnel[i]);
+                        }
+                        liste_demon.Sort();
+                        foreach (Demon d in liste_demon)
+                        {
+                            Console.WriteLine(d.ToString());
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Trions les indices de cruauté des Loup-Garous");
+                        List<LoupGarou> liste_loup_garou = new List<LoupGarou>();
+                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+                        {
+                            if (this.ToutLePersonnel[i] is LoupGarou) liste_loup_garou.Add((LoupGarou)this.ToutLePersonnel[i]);
+                        }
+                        liste_loup_garou.Sort();
+                        foreach (LoupGarou lp in liste_loup_garou)
+                        {
+                            Console.WriteLine(lp.ToString());
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Trions les indices de luminosité des Vampires");
+                        List<Vampire> liste_vampire = new List<Vampire>();
+                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+                        {
+                            if (this.ToutLePersonnel[i] is Vampire) liste_vampire.Add((Vampire)this.ToutLePersonnel[i]);
+                        }
+                        liste_vampire.Sort();
+                        foreach (Vampire v in liste_vampire)
+                        {
+                            Console.WriteLine(v.ToString());
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } while (numero != 1 && numero != 2 && numero != 3 && numero != 4);
+        }
+        public void Change()
+        {
+            try
+            {
+
+                int reponse;
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
+                    Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
+                    Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
+                    Console.WriteLine("Tapez 3. Si vous souhaitez changer la maintenance d'une attraction.");
+                    reponse = int.Parse(Console.ReadLine());
+                    switch (reponse)
+                    {
+                        case 1:
+                            Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
+                            Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
+                            int mat = int.Parse(Console.ReadLine());
+                            int index_monstre = this.ReturnIndexList(mat, true);
+                            if (index_monstre == 100) Console.WriteLine("Le matricule n'est pas valide");
+                            else
+                            {
+                                Console.WriteLine("Quelle fonction voulez vous affecter?");
+                                string rep = Console.ReadLine();
+                                for (int i = 0; i < this.toutLePersonnel.Count(); i++)
+                                {
+                                    if (this.toutLePersonnel[i].Matricule == mat)
+                                    {
+                                        this.ChangeFonction(this.toutLePersonnel[i], rep);
+                                        Console.WriteLine("Changement fait");
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
+                            Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer l'affectation");
+                            int mat2 = int.Parse(Console.ReadLine());
+                            int index_monstre1 = this.ReturnIndexList(mat2, true);
+                            if (index_monstre1 == 100) Console.WriteLine("Le matricule n'est pas valide");
+                            else
+                            {
+                                Console.WriteLine("Quelle affection voulez vous assigner?");
+                                int rep2 = int.Parse(Console.ReadLine());
+                                bool valide = false;
+                                for (int i = 0; i < this.attractions.Count(); i++)
+                                {
+                                    if (rep2 == this.attractions[i].Id) valide = true;
+                                }
+                                if (valide)
+                                {
+                                    this.ChangeAffectation((Monstre)this.toutLePersonnel[index_monstre1], rep2);
+                                    Console.WriteLine("Changement effectué");
+                                }
+                                else Console.WriteLine("Affectation non valide");
+                            }
+                            break;
+                        case 3:
+                            Console.Clear();
+                            Console.WriteLine("Vous avez décidé de modifier la maintenance d'une attraction");
+                            Console.WriteLine("Veuillez entrer l'identifiant de l'attraction dont vous voulez modifer la maintenance");
+                            int ID = int.Parse(Console.ReadLine());
+                            int index_attraction = this.ReturnIndexList(ID, false);
+                            if (index_attraction == 100) Console.WriteLine("ID non valide");
+                            else
+                            {
+                                Console.WriteLine("Quelle est la nature de la maintenance?");
+                                string maintenance = Console.ReadLine();
+                                for (int i = 0; i < this.attractions.Count(); i++)
+                                {
+                                    if (this.attractions[i].Id == ID)
+                                    {
+                                        this.ChangeOuverture2(this.attractions[i], maintenance);
+                                        Console.WriteLine("changement effectué");
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+
+                            break;
+                    }
+                } while (reponse != 1 && reponse != 2 && reponse != 3);
+            }
+            catch
+            {
+                Console.WriteLine("Vous n'avez pas entré un nombre entier.");
             }
         }
+
+
         #endregion
 
         #region ACCESSEURS
