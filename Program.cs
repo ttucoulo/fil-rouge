@@ -37,68 +37,84 @@ namespace FilRouge
         public static void MenuPrincipal(Administration adm)
         {
             int numero;
-            do
+            try
             {
-                Console.Clear();
-                Console.WriteLine("Tappez 1. Demo sans interaction?\nTappez 2. Menu avec interactions?");
-                numero = int.Parse(Console.ReadLine());
-                switch (numero)
+                do
                 {
-                    case 1:
-                        Demo(adm);
-                        break;
-                    case 2:
-                        Menu(adm);
-                        break;
-                    default:
-                        break;
-                }
-            } while (numero != 1 && numero != 2);
+                    Console.Clear();
+                    Console.WriteLine("Tappez 1. Demo sans interaction?\nTappez 2. Menu avec interactions?");
+                    numero = int.Parse(Console.ReadLine());
+                    switch (numero)
+                    {
+                        case 1:
+                            Demo(adm);
+                            break;
+                        case 2:
+                            Menu(adm);
+                            break;
+                        default:
+                            break;
+                    }
+                } while (numero != 1 && numero != 2);
+            }
+            catch
+            {
+                Console.WriteLine("Saisissez un entier!");
+                Console.ReadKey();
+            }
         }
         public static void Menu(Administration adm)
         {
             int numero;
-            do
+            try
             {
-                Console.Clear();
-                AffichageActions();
-                numero = int.Parse(Console.ReadLine());
-                switch (numero)
+                do
                 {
-                    case 1:
-                        Console.WriteLine("Nous allons remplir la base de donnée à l'aide du fichier Listing.");
-                        adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
-                        Console.WriteLine("Ajout fait");
-                        Console.ReadKey();
-                        break;
-                    case 2:
-                        Console.WriteLine("Vous avez décidé d'ajouter un nouveau membre ou une nouvelle attraction:");
-                        adm.AjouterMembres();
-                        Console.WriteLine("L'ajout a bien été effectué.");
-                        Console.ReadKey();
-                        break;
-                    case 3:
-                        Change(adm);
-                        Console.ReadKey();
-                        break;
-                    case 4:
-                        adm.SortieSelonCritere();
-                        break;
-                    case 5:
-                        Tri(adm);
-                        Console.ReadKey();
-                        break;
-                    case 6:
-                        Cagnotte(adm);
-                        break;
-                    case 0:
-                        //Pour quitter le menu
-                        break;
-                    default:
-                        MessageErreur();
-                        break;
-                }
-            } while (numero !=0);
+                    Console.Clear();
+                    AffichageActions();
+                    numero = int.Parse(Console.ReadLine());
+                    switch (numero)
+                    {
+                        case 1:
+                            Console.WriteLine("Nous allons remplir la base de donnée à l'aide du fichier Listing.");
+                            adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
+                            Console.WriteLine("Ajout fait");
+                            Console.ReadKey();
+                            break;
+                        case 2:
+                            Console.WriteLine("Vous avez décidé d'ajouter un nouveau membre ou une nouvelle attraction:");
+                            adm.AjouterMembres();
+                            Console.WriteLine("L'ajout a bien été effectué.");
+                            Console.ReadKey();
+                            break;
+                        case 3:
+                            Change(adm);
+                            Console.ReadKey();
+                            break;
+                        case 4:
+                            adm.SortieSelonCritere();
+                            break;
+                        case 5:
+                            Tri(adm);
+                            Console.ReadKey();
+                            break;
+                        case 6:
+                            Cagnotte(adm);
+                            break;
+                        case 0:
+                            //Pour quitter le menu
+                            break;
+                        default:
+                            MessageErreur();
+                            break;
+                    }
+                } while (numero != 0);
+            }
+            catch
+            {
+                Console.WriteLine("Vous n'avez pas saisi un nombre entier.");
+                Console.ReadKey();
+            }
         }
         public static void MessageErreur()
         {
@@ -195,79 +211,94 @@ namespace FilRouge
         }
         public static void Change(Administration adm)
         {
-            Console.Clear();
-            Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
-            Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
-            Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
-            Console.WriteLine("Tapez 3. Si vous souhaitez changer la maintenance d'une attraction.");
-            int reponse = int.Parse(Console.ReadLine());
-            switch (reponse)
+            try
             {
-                case 1:
-                    Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
-                    Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
-                    int mat = int.Parse(Console.ReadLine());
-                    int index_monstre = adm.ReturnIndexList(mat, true);
-                    if (index_monstre == 100) Console.WriteLine("Le matricule n'est pas valide");
-                    else
-                    {
-                        Console.WriteLine("Quelle fonction voulez vous affecter?");
-                        string rep = Console.ReadLine();
-                        for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
-                        {
-                            if (adm.ToutLePersonnel[i].Matricule == mat)
-                            {
-                                adm.ChangeFonction(adm.ToutLePersonnel[i], rep);
-                                Console.WriteLine("Changement fait");
-                            }
-                        }
-                    }
-                    break;
-                case 2:
+                
+                int reponse;
+                do
+                {
                     Console.Clear();
-                    Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
-                    Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer l'affectation");
-                    int mat2 = int.Parse(Console.ReadLine());
-                    int index_monstre1 = adm.ReturnIndexList(mat2, true);
-                    if (index_monstre1 == 100) Console.WriteLine("Le matricule n'est pas valide");
-                    else
+                    Console.WriteLine("Vous avez décidé de faire évoluer un membre du personnel ou une attraction:");
+                    Console.WriteLine("Tapez 1. Si vous souhaitez changer la fonction d'un membre du personnel.");
+                    Console.WriteLine("Tapez 2. Si vous souhaitez changer l'affection d'un monstre.");
+                    Console.WriteLine("Tapez 3. Si vous souhaitez changer la maintenance d'une attraction.");
+                    reponse = int.Parse(Console.ReadLine());
+                    switch (reponse)
                     {
-                        Console.WriteLine("Quelle affection voulez vous assigner?");
-                        int rep2 = int.Parse(Console.ReadLine());
-                        bool valide = false;
-                        for (int i = 0; i < adm.Attractions.Count(); i++)
-                        {
-                            if (rep2 == adm.Attractions[i].Id) valide = true;
-                        }
-                        if (valide)
-                        {
-                            adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[index_monstre1], rep2);
-                            Console.WriteLine("Changement effectué");
-                        }
-                        else Console.WriteLine("Affectation non valide");
-                    }
-                    break;
-                case 3:
-                    Console.Clear();
-                    Console.WriteLine("Vous avez décidé de modifier la maintenance d'une attraction");
-                    Console.WriteLine("Veuillez entrer l'identifiant de l'attraction dont vous voulez modifer la maintenance");
-                    int ID = int.Parse(Console.ReadLine());
-                    int index_attraction = adm.ReturnIndexList(ID, false);
-                    if (index_attraction == 100) Console.WriteLine("ID non valide");
-                    else
-                    {
-                        Console.WriteLine("Quelle est la nature de la maintenance?");
-                        string maintenance = Console.ReadLine();
-                        for (int i = 0; i < adm.Attractions.Count(); i++)
-                        {
-                            if (adm.Attractions[i].Id == ID)
+                        case 1:
+                            Console.WriteLine("Vous avez décidé de modifier la fonction d'un membre du personnel");
+                            Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer la fonction");
+                            int mat = int.Parse(Console.ReadLine());
+                            int index_monstre = adm.ReturnIndexList(mat, true);
+                            if (index_monstre == 100) Console.WriteLine("Le matricule n'est pas valide");
+                            else
                             {
-                                adm.ChangeOuverture2(adm.Attractions[i], maintenance);
-                                Console.WriteLine("changement effectué");
+                                Console.WriteLine("Quelle fonction voulez vous affecter?");
+                                string rep = Console.ReadLine();
+                                for (int i = 0; i < adm.ToutLePersonnel.Count(); i++)
+                                {
+                                    if (adm.ToutLePersonnel[i].Matricule == mat)
+                                    {
+                                        adm.ChangeFonction(adm.ToutLePersonnel[i], rep);
+                                        Console.WriteLine("Changement fait");
+                                    }
+                                }
                             }
-                        }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            Console.WriteLine("Vous avez décidé de modifier l'affectation d'un monstre");
+                            Console.WriteLine("Veuillez entrer le matricule du personnel dont vous voulez modifer l'affectation");
+                            int mat2 = int.Parse(Console.ReadLine());
+                            int index_monstre1 = adm.ReturnIndexList(mat2, true);
+                            if (index_monstre1 == 100) Console.WriteLine("Le matricule n'est pas valide");
+                            else
+                            {
+                                Console.WriteLine("Quelle affection voulez vous assigner?");
+                                int rep2 = int.Parse(Console.ReadLine());
+                                bool valide = false;
+                                for (int i = 0; i < adm.Attractions.Count(); i++)
+                                {
+                                    if (rep2 == adm.Attractions[i].Id) valide = true;
+                                }
+                                if (valide)
+                                {
+                                    adm.ChangeAffectation((Monstre)adm.ToutLePersonnel[index_monstre1], rep2);
+                                    Console.WriteLine("Changement effectué");
+                                }
+                                else Console.WriteLine("Affectation non valide");
+                            }
+                            break;
+                        case 3:
+                            Console.Clear();
+                            Console.WriteLine("Vous avez décidé de modifier la maintenance d'une attraction");
+                            Console.WriteLine("Veuillez entrer l'identifiant de l'attraction dont vous voulez modifer la maintenance");
+                            int ID = int.Parse(Console.ReadLine());
+                            int index_attraction = adm.ReturnIndexList(ID, false);
+                            if (index_attraction == 100) Console.WriteLine("ID non valide");
+                            else
+                            {
+                                Console.WriteLine("Quelle est la nature de la maintenance?");
+                                string maintenance = Console.ReadLine();
+                                for (int i = 0; i < adm.Attractions.Count(); i++)
+                                {
+                                    if (adm.Attractions[i].Id == ID)
+                                    {
+                                        adm.ChangeOuverture2(adm.Attractions[i], maintenance);
+                                        Console.WriteLine("changement effectué");
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+
+                            break;
                     }
-                    break;
+                } while (reponse !=1 && reponse !=2 && reponse!=3 );
+            }
+            catch
+            {
+                Console.WriteLine("Vous n'avez pas entré un nombre entier.");
             }
         }
         public static void Demo(Administration adm)
