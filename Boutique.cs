@@ -24,7 +24,7 @@ namespace FilRouge
 
         public override string ToString()
         {
-            return "Boutique : "+base.ToString() + "Type Boutique : "+this.type;
+            return "Boutique : "+base.ToString() + " Type Boutique : "+this.type;
         }
 
         public TypeBoutique TypeBoutique

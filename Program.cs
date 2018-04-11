@@ -18,11 +18,29 @@ namespace FilRouge
         static void Main(string[] args)
         {
             Administration adm = new Administration();
+            MenuPrincipal(adm);
+        }
+
+        #region Méthodes statiques 
+        public static void AffichageActions()
+        {
+            Console.WriteLine("Bienvenue dans le logiciel de gestion administrative du parc Zombillenium.");
+            Console.WriteLine("Vous allez avoir le choix entre differentes actions.\nVeuillez saisir une action :\n");
+            Console.WriteLine("Tappez 1. Si vous voulez lire un fichier csv contenant des membres du personnel et des attractions, et de les ajouter dans le logiciel.");
+            Console.WriteLine("Tappez 2. Si vous voulez ajouter de nouvelles attractions, de nouveaux membres du personnel.");
+            Console.WriteLine("Tappez 3. Si vous voulez « faire évoluer » les membres du personnel et les attractions.");
+            Console.WriteLine("Tappez 4. Si vous voulez sortir plusieurs éléments suivant des critères donnés en sortie console, mais aussi dans un fichier csv.");
+            Console.WriteLine("Tappez 5. Si vous voulez trier des éléments en fonctions d’un paramètre donné.");
+            Console.WriteLine("Tappez 6. Si vous voulez agir sur la cagnotte des monstres.");
+            Console.WriteLine("Tappez 0. Pour quitter le menu.");
+        }
+        public static void MenuPrincipal(Administration adm)
+        {
             int numero;
             do
             {
                 Console.Clear();
-                Console.WriteLine("Tappez 1. Demo ?\nTappez 2. Menu pour verifier chaque action individuellement.");
+                Console.WriteLine("Tappez 1. Demo sans interaction?\nTappez 2. Menu avec interactions?");
                 numero = int.Parse(Console.ReadLine());
                 switch (numero)
                 {
@@ -36,18 +54,6 @@ namespace FilRouge
                         break;
                 }
             } while (numero != 1 && numero != 2);
-        }
-        public static void AffichageActions()
-        {
-            Console.WriteLine("Bienvenue dans le logiciel de gestion administrative du parc Zombillenium.");
-            Console.WriteLine("Vous allez avoir le choix entre differentes actions.\nVeuillez saisir une action :\n");
-            Console.WriteLine("Tappez 1. Si vous voulez lire un fichier csv contenant des membres du personnel et des attractions, et de les ajouter dans le logiciel.");
-            Console.WriteLine("Tappez 2. Si vous voulez ajouter de nouvelles attractions, de nouveaux membres du personnel.");
-            Console.WriteLine("Tappez 3. Si vous voulez « faire évoluer » les membres du personnel et les attractions.");
-            Console.WriteLine("Tappez 4. Si vous voulez sortir plusieurs éléments suivant des critères donnés en sortie console, mais aussi dans un fichier csv.");
-            Console.WriteLine("Tappez 5. Si vous voulez trier des éléments en fonctions d’un paramètre donné.");
-            Console.WriteLine("Tappez 6. Si vous voulez agir sur la cagnotte des monstres.");
-            Console.WriteLine("Tappez 0. Pour quitter le menu.");
         }
         public static void Menu(Administration adm)
         {
@@ -370,5 +376,6 @@ namespace FilRouge
             Console.WriteLine("Nouvelle affectation de Luc Cypher : "+((Monstre)adm.ToutLePersonnel[adm.ReturnIndexList(66754,true)]).Affectation);
             Console.ReadKey();
         }
+        #endregion
     }
 }

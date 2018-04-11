@@ -26,7 +26,15 @@ namespace FilRouge
         }
         public override string ToString()
         {
-            return "Darkride  " +base.ToString();
+            if (this.vehicule)
+            {
+                return "Darkride  " + base.ToString()+" avec vehicule";
+            }
+            else
+            {
+                return "Darkride  " + base.ToString()+" sans vehicule";
+            }
+            
         }
     }
 }

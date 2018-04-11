@@ -504,6 +504,23 @@ namespace FilRouge
             string nom = Console.ReadLine();
             Console.WriteLine("Veuillez saisir le type de besoin.");
             string typeBesoin = Console.ReadLine();
+            Console.WriteLine("Maintenance ?\nTappez 1. Oui\nTappez 2. Non.");
+            int numerobis = int.Parse(Console.ReadLine());
+            bool maintenance = false;
+            do
+            {
+                switch (numerobis)
+                {
+                    case 1:
+                        maintenance = true;
+                        break;
+                    case 2:
+                        maintenance = false;
+                        break;
+                    default:
+                        break;
+                }
+            } while (numerobis != 1 && numerobis != 2);
             Console.WriteLine("Veuillez saisir une durée d'attraction en minutes et en secondes.\nEn minute ?");
             int duree_minute = int.Parse(Console.ReadLine());
             Console.WriteLine("En seconde ?");
@@ -526,7 +543,20 @@ namespace FilRouge
                         break;
                 }
             } while (numero != 1 && numero != 2);
-            this.attractions.Add(new Darkride(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin,duree,vehicule));
+            if (maintenance)
+            {
+                Console.WriteLine("Veuillez saisir la durée de la maintenance.\nD'abord,combien d'heures ?");
+                int heures = int.Parse(Console.ReadLine());
+                Console.WriteLine("Minutes ?");
+                int minutes = int.Parse(Console.ReadLine());
+                Console.WriteLine("Nature de la maintenance ?");
+                string natureM = Console.ReadLine();
+                this.attractions.Add(new Darkride(besoinSpecifique, new TimeSpan(heures, minutes, 0), new List<Monstre>(), id, maintenance, natureM, nombreMinimumMonstre, nom, false, typeBesoin, duree,vehicule));
+            }
+            else
+            {
+                this.attractions.Add(new Darkride(besoinSpecifique, id, nombreMinimumMonstre, nom, typeBesoin, duree, vehicule));
+            }
             this.CheckMonstre(id);
         }
         public void AjouterRollerCoasterManu()
