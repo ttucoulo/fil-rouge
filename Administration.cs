@@ -447,8 +447,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Monstre new_monstre = new Monstre(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
             this.toutLePersonnel.Add(new_monstre);
             this.CheckAttraction(new_monstre);
@@ -474,8 +478,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Console.WriteLine("Veuillez saisir un indice de luminosite.");
             float luminosite = (float)Convert.ToDouble(Console.ReadLine());
             Vampire new_vampire = new Vampire(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, luminosite);
@@ -503,8 +511,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Console.WriteLine("Veuillez saisir un teint parmi les deux cas suivants :\nBleuatre.\nGrisatre.");
             string teint_string = Console.ReadLine();
             CouleurZ teint = CastToCouleurZ(teint_string);
@@ -535,8 +547,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Console.WriteLine("Veuillez saisir un indice de cruaute.");
             int cruaute = int.Parse(Console.ReadLine());
             LoupGarou new_loupGarou = new LoupGarou(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, cruaute);
@@ -564,8 +580,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Fantome new_fantome = new Fantome(matricule, nom, prenom, sexe, fonction, affectation, cagnotte);
             this.toutLePersonnel.Add(new_fantome);
             this.CheckAttraction(new_fantome);
@@ -591,8 +611,12 @@ namespace FilRouge
                 affectation = int.Parse(Console.ReadLine());
 
             } while (!this.Check_Affectation(affectation));
-            Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
-            int cagnotte = int.Parse(Console.ReadLine());
+            int cagnotte;
+            do
+            {
+                Console.WriteLine("Veuillez saisir la cagnotte du monstre.");
+                cagnotte = int.Parse(Console.ReadLine());
+            } while (!this.Check_Cagnotte(cagnotte));
             Console.WriteLine("Veuillez saisir une force pour le demon.");
             int force = int.Parse(Console.ReadLine());
             Demon new_demon = new Demon(matricule, nom, prenom, sexe, fonction, affectation, cagnotte, force);
@@ -1537,6 +1561,11 @@ namespace FilRouge
                 }
                 return false;
             }
+        }
+        public bool Check_Cagnotte(int cagnotte)
+        {
+            if (cagnotte >= 50 && cagnotte <= 500) return true;
+            else return false;
         }
 
 
