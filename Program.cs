@@ -76,9 +76,8 @@ namespace FilRouge
                     switch (numero)
                     {
                         case 1:
-                            Console.WriteLine("Nous allons remplir la base de donnée à l'aide du fichier Listing.");
                             adm.AjoutMembresFromCSV("C:/temp/Listing.csv");
-                            Console.WriteLine("Ajout fait");
+                            Console.WriteLine("Base de donnée remplie.");
                             Console.ReadKey();
                             break;
                         case 2:
@@ -112,7 +111,7 @@ namespace FilRouge
             }
             catch
             {
-                Console.WriteLine("Vous n'avez pas saisi un nombre entier.");
+                Console.WriteLine("Saisi non correct.");
                 Console.ReadKey();
             }
         }
