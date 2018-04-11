@@ -1119,6 +1119,32 @@ namespace FilRouge
 
             Console.ReadKey();
         }
+        public void Tri_Demon()
+        {
+            List<Demon> liste_demon = new List<Demon>();
+            for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+            {
+                if (this.ToutLePersonnel[i] is Demon) liste_demon.Add((Demon)this.ToutLePersonnel[i]);
+            }
+            liste_demon.Sort();
+            foreach (Demon d in liste_demon)
+            {
+                Console.WriteLine(d.ToString());
+            }
+        }
+        public void Tri_Cagnottes()
+        {
+            List<Monstre> liste_monstre = new List<Monstre>();
+            for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
+            {
+                if (this.ToutLePersonnel[i] is Monstre) liste_monstre.Add((Monstre)this.ToutLePersonnel[i]);
+            }
+            liste_monstre.Sort();
+            foreach (Monstre a in liste_monstre)
+            {
+                Console.WriteLine(a.ToString());
+            }
+        }
         public void Tri()
         {
             Console.WriteLine("Trier par quel critère ?");
@@ -1130,29 +1156,11 @@ namespace FilRouge
                 {
                     case 1:
                         Console.WriteLine("Trions les cagnottes des monstres par ordre croissant");
-                        List<Monstre> liste_monstre = new List<Monstre>();
-                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
-                        {
-                            if (this.ToutLePersonnel[i] is Monstre) liste_monstre.Add((Monstre)this.ToutLePersonnel[i]);
-                        }
-                        liste_monstre.Sort();
-                        foreach (Monstre a in liste_monstre)
-                        {
-                            Console.WriteLine(a.ToString());
-                        }
+                        this.Tri_Cagnottes();
                         break;
                     case 2:
                         Console.WriteLine("Trions les forces des Demons par ordre croissant");
-                        List<Demon> liste_demon = new List<Demon>();
-                        for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
-                        {
-                            if (this.ToutLePersonnel[i] is Demon) liste_demon.Add((Demon)this.ToutLePersonnel[i]);
-                        }
-                        liste_demon.Sort();
-                        foreach (Demon d in liste_demon)
-                        {
-                            Console.WriteLine(d.ToString());
-                        }
+                        this.Tri_Demon();
                         break;
                     case 3:
                         Console.WriteLine("Trions les indices de cruauté des Loup-Garous");
