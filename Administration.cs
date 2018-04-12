@@ -154,7 +154,7 @@ namespace FilRouge
         }
         public void AttractionEnMaintenance(bool console)
         {
-            string nomFich = "C:/temp/writeMaintenance.csv";
+            string nomFich = "C:/Users/thiba/OneDrive/Documents/Visual Studio 2017/Projects/fil_rouge_git/POOI_GRP_TUCOULOU_FEURGARD/bin/Debug/writeMaintenance.csv";
             StreamWriter fichEcr = new StreamWriter(nomFich, true);
             for (int i = 0; i < this.attractions.Count(); i++)
             {
@@ -175,7 +175,7 @@ namespace FilRouge
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("Tout d'abord, nous allons charger les membres du personnel et les attractions du fichier csv Listing.csv");
-            this.AjoutMembresFromCSV("C:/temp/Listing.csv");
+            this.AjoutMembresFromCSV("C:/Users/thiba/OneDrive/Documents/Visual Studio 2017/Projects/fil_rouge_git/POOI_GRP_TUCOULOU_FEURGARD/bin/Debug/Listing.csv");
             Console.WriteLine("Ca y est, tous les membres du personnel et attractions ont été ajoutés avec succès.");
 
             Console.WriteLine("Affichage de la liste de Personnel :\n");
@@ -254,7 +254,7 @@ namespace FilRouge
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("Maintenant, on va sortir tous les Vampires de nos membres du personnel en sortie console et en même temps dans un fichier csv qui s'appelera write.csv.\n\n");
-            string nomFichier = "C:/temp/write.csv";
+            string nomFichier = "C:/Users/thiba/OneDrive/Documents/Visual Studio 2017/Projects/fil_rouge_git/POOI_GRP_TUCOULOU_FEURGARD/bin/Debug/write.csv";
             StreamWriter fichEcrire = new StreamWriter(nomFichier, true);
             for (int i = 0; i < this.ToutLePersonnel.Count(); i++)
             {
@@ -1164,7 +1164,7 @@ namespace FilRouge
                     Console.WriteLine("Tappez 1. Par Sorcier.\nTappez 2. Par Monstre.\nTappez 3. Par Demon.\nTappez 4. Par Vampire.\nTappez 5. Par Loup Garou.\n" +
                         "Tappez 6. Par Zombie.\nTappez 7. Par Fantome.");
                     numero_personnel = int.Parse(Console.ReadLine());
-                    string nomFich = "C:/temp/write.csv";
+                    string nomFich = "C:/Users/thiba/OneDrive/Documents/Visual Studio 2017/Projects/fil_rouge_git/POOI_GRP_TUCOULOU_FEURGARD/bin/Debug/write.csv";
                     StreamWriter fichEcr = new StreamWriter(nomFich, true);
                     switch (numero_personnel)
                     {
